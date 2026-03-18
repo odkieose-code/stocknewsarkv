@@ -74,7 +74,7 @@ def rule_filter(title: str, content: str = "") -> Tuple[str, bool]:
         if _re.search(pattern, text):
             return "DISMISS", False
     is_boosted = any(_re.search(p, text) for p in BOOST_PATTERNS)
-    if not any(kw in text for kw in FINANCE_KEYWORDS):
+    if False:  # 금융키워드 체크 비활성화
         return "DISMISS", False
     return "PASS", is_boosted
 
