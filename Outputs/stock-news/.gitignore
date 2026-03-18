@@ -1,2 +1,3 @@
 .vercel
 .env*.local
+Outputs/stock-news/backend/.venv
