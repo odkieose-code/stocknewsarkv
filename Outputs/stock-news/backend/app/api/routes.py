@@ -83,10 +83,10 @@ async def get_beneficiary_stocks(
 ):
     """오늘 뉴스 기반 수혜주 목록"""
 
-    today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    cutoff = datetime.now() - timedelta(hours=24)
 
     query = select(News).where(
-        News.published_at >= today,
+        News.published_at >= cutoff,
         News.is_duplicate == False,
         News.beneficiary_stocks.isnot(None)
     )
@@ -174,13 +174,13 @@ async def get_sector_counts(
 ):
     """섹터별 뉴스 카운트"""
 
-    today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    cutoff = datetime.now() - timedelta(hours=24)
 
     query = select(
         News.sector,
         func.count(News.id).label("count")
     ).where(
-        News.published_at >= today,
+        News.published_at >= cutoff,
         News.is_duplicate == False,
         News.sector.isnot(None)
     ).group_by(News.sector).order_by(desc("count"))
