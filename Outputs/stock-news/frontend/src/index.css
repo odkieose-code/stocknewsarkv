@@ -5,20 +5,21 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
 :root {
-  --bg-primary: #F2F0EF;
-  --bg-card: rgba(0,0,0,0.03);
-  --bg-input: rgba(0,0,0,0.05);
-  --text-primary: rgba(0,0,0,0.75);
-  --text-secondary: rgba(0,0,0,0.5);
-  --text-tertiary: rgba(0,0,0,0.35);
-  --text-ghost: rgba(0,0,0,0.2);
-  --accent: rgba(0,71,255,0.85);
-  --accent-soft: rgba(0,71,255,0.08);
-  --border: rgba(0,0,0,0.1);
-  --border-strong: rgba(0,0,0,0.18);
-  --positive: rgba(0,160,80,0.85);
-  --negative: rgba(220,40,40,0.85);
-  --ticker-bg: rgba(0,0,0,0.02);
+  --bg-primary: #0e0e0e;
+  --bg-card: rgba(255,255,255,0.03);
+  --bg-card-hover: rgba(255,255,255,0.055);
+  --bg-input: rgba(255,255,255,0.06);
+  --text-primary: rgba(255,255,255,0.82);
+  --text-secondary: rgba(255,255,255,0.5);
+  --text-tertiary: rgba(255,255,255,0.3);
+  --text-ghost: rgba(255,255,255,0.18);
+  --accent: rgba(80,140,255,0.9);
+  --accent-soft: rgba(80,140,255,0.08);
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --positive: rgba(0,200,100,0.9);
+  --negative: rgba(255,70,70,0.9);
+  --ticker-bg: rgba(255,255,255,0.02);
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -33,12 +34,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 노이즈 오버레이 */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  opacity: 0.035;
+  opacity: 0.04;
   pointer-events: none;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -46,41 +46,26 @@ body::before {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes breathe {
-  0%, 100% { opacity: 0.3; }
-  50%       { opacity: 0.6; }
-}
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-@keyframes scan {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.4; }
 }
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.3; }
 }
-
-/* ── 티커 바: 끊김 없는 무한 루프 ──────────────────────── */
-/* 6벌 복사 → -16.666...% (1/6) 이동으로 seamless 루프 */
 @keyframes ticker-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-16.6667%); }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ── 티커 컨테이너 ──────────────────────────────────────── */
+/* ── 티커 ───────────────────────────────────── */
 .ticker-wrap {
   overflow: hidden;
   background: var(--ticker-bg);
@@ -91,43 +76,26 @@ body::before {
   user-select: none;
   position: relative;
 }
-
-/* 좌우 페이드 마스크 */
 .ticker-wrap::before,
 .ticker-wrap::after {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 40px;
+  top: 0; bottom: 0;
+  width: 48px;
   z-index: 2;
   pointer-events: none;
 }
-.ticker-wrap::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-primary), transparent);
-}
-.ticker-wrap::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-primary), transparent);
-}
+.ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-primary), transparent); }
+.ticker-wrap::after  { right: 0; background: linear-gradient(to left, var(--bg-primary), transparent); }
 
-/* 6벌 복사본 트랙 */
 .ticker-track {
   display: flex;
   align-items: center;
   white-space: nowrap;
   will-change: transform;
 }
-
-/* 애니메이션은 데이터 로드 후 적용 */
-.ticker-track.ticker-animate {
-  animation: ticker-scroll 60s linear infinite;
-}
-
-.ticker-track.ticker-animate:hover {
-  animation-play-state: paused;
-}
+.ticker-track.ticker-animate { animation: ticker-scroll 55s linear infinite; }
+.ticker-track.ticker-animate:hover { animation-play-state: paused; }
 
 .ticker-item {
   display: inline-flex;
@@ -137,14 +105,12 @@ body::before {
   font-size: 10px;
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
-  color: var(--text-tertiary);
   border-right: 1px solid var(--border);
   height: 30px;
   flex-shrink: 0;
 }
-
-.ticker-item .t-label  { color: var(--text-ghost); font-size: 9px; letter-spacing: 0.08em; }
-.ticker-item .t-value  { color: var(--text-secondary); font-weight: 500; }
-.ticker-item .t-up     { color: var(--positive); font-size: 9px; font-weight: 600; }
-.ticker-item .t-down   { color: var(--negative); font-size: 9px; font-weight: 600; }
+.ticker-item .t-label   { color: var(--text-ghost); font-size: 9px; }
+.ticker-item .t-value   { color: var(--text-secondary); font-weight: 500; }
+.ticker-item .t-up      { color: var(--positive); font-size: 9px; font-weight: 600; }
+.ticker-item .t-down    { color: var(--negative); font-size: 9px; font-weight: 600; }
 .ticker-item .t-neutral { color: var(--text-ghost); font-size: 9px; }
