@@ -37,25 +37,26 @@ async function fetchTickerData(): Promise<TickerData[]> {
 
 function TickerBar() {
   const [items, setItems] = useState<TickerData[]>(TICKER_FALLBACK)
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    fetchTickerData().then(setItems)
+    fetchTickerData().then(d => { setItems(d); setLoaded(true) })
     const id = setInterval(() => fetchTickerData().then(setItems), 60_000)
     return () => clearInterval(id)
   }, [])
 
-  // 4벌 복사 → -25% 이동 = 1벌 분량만큼 이동 후 seamless reset
-  const quad = [...items, ...items, ...items, ...items]
+  // 6벌 복사 → seamless infinite scroll
+  const sextet = [...items, ...items, ...items, ...items, ...items, ...items]
 
   return (
-    <div className="ticker-wrap" style={{overflow:"hidden",borderBottom:"1px solid var(--border)",height:28,display:"flex",alignItems:"center",background:"rgba(0,0,0,0.02)",userSelect:"none"}}>
-      <div className="ticker-track" style={{display:"flex",alignItems:"center",whiteSpace:"nowrap",willChange:"transform"}}>
-        {quad.map((item, i) => (
-          <span className="ticker-item" key={i} style={{display:"inline-flex",alignItems:"center",gap:6,padding:"0 24px",fontSize:10,fontFamily:"var(--font-mono)",letterSpacing:"0.06em",boxShadow:"1px 0 0 rgba(0,0,0,0.1)",height:28,whiteSpace:"nowrap"}}>
-            <span className="t-label" style={{color:"var(--text-ghost)"}}>{item.label}</span>
-            <span className="t-value" style={{color:"var(--text-secondary)",fontWeight:500}}>{item.value}</span>
+    <div className="ticker-wrap">
+      <div className={`ticker-track${loaded ? ' ticker-animate' : ''}`}>
+        {sextet.map((item, i) => (
+          <span className="ticker-item" key={i}>
+            <span className="t-label">{item.label}</span>
+            <span className="t-value">{item.value}</span>
             {item.change && (
-              <span className={item.up ? 't-up' : item.up === false ? 't-down' : ''}>
+              <span className={item.up ? 't-up' : item.up === false ? 't-down' : 't-neutral'}>
                 {item.change}
               </span>
             )}
@@ -94,7 +95,7 @@ function LiveDot() {
   return <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--positive)', marginRight: 6, animation: 'pulse-dot 1.5s ease-in-out infinite', verticalAlign: 'middle' }} />
 }
 
-// ── Market Pulse (뉴스 데이터로 감성 분포 계산) ───────────
+// ── Market Pulse ──────────────────────────────────────────
 function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: number } }) {
   const cnt = { positive: 0, neutral: 0, negative: 0 }
   newsData?.items.forEach(n => {
@@ -103,50 +104,92 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
     else cnt.neutral++
   })
   const total = newsData?.items.length ?? 0
-  const hot = newsData?.items.filter(n => (n.importance_score ?? 0) >= 80).slice(0, 3) ?? []
+  const hot = newsData?.items
+    .filter(n => (n.importance_score ?? 0) >= 80)
+    .sort((a, b) => (b.importance_score ?? 0) - (a.importance_score ?? 0))
+    .slice(0, 3) ?? []
+
+  const posRatio = total > 0 ? Math.round((cnt.positive / total) * 100) : 0
+  const negRatio = total > 0 ? Math.round((cnt.negative / total) * 100) : 0
+  const neuRatio = total > 0 ? 100 - posRatio - negRatio : 0
 
   return (
     <div style={{ border: '1px solid var(--border)', borderRadius: 8, padding: 14, fontFamily: 'var(--font-mono)' }}>
       <div style={{ fontSize: 10, color: 'var(--text-ghost)', letterSpacing: '0.1em', marginBottom: 12 }}>// MARKET PULSE</div>
 
+      {/* 감성 분포 바 */}
       <div style={{ marginBottom: 14 }}>
         <div style={{ fontSize: 9, color: 'var(--text-ghost)', marginBottom: 6, letterSpacing: '0.08em' }}>SENTIMENT DIST.</div>
-        <div style={{ display: 'flex', height: 6, borderRadius: 3, overflow: 'hidden', background: 'var(--bg-input)' }}>
-          {total > 0 && (
+        <div style={{ display: 'flex', height: 6, borderRadius: 3, overflow: 'hidden', background: 'var(--bg-input)', gap: 1 }}>
+          {total > 0 ? (
             <>
-              <div style={{ flex: cnt.positive, background: 'var(--positive)', transition: 'flex 0.6s ease' }} />
-              <div style={{ flex: cnt.neutral,  background: 'var(--border-strong)', transition: 'flex 0.6s ease' }} />
-              <div style={{ flex: cnt.negative, background: 'var(--negative)', transition: 'flex 0.6s ease' }} />
+              <div style={{ flex: cnt.positive, background: 'var(--positive)', transition: 'flex 0.8s ease', minWidth: cnt.positive > 0 ? 2 : 0 }} />
+              <div style={{ flex: cnt.neutral, background: 'var(--border-strong)', transition: 'flex 0.8s ease', minWidth: cnt.neutral > 0 ? 2 : 0 }} />
+              <div style={{ flex: cnt.negative, background: 'var(--negative)', transition: 'flex 0.8s ease', minWidth: cnt.negative > 0 ? 2 : 0 }} />
             </>
+          ) : (
+            <div style={{ flex: 1, background: 'var(--border)', animation: 'breathe 2s ease infinite' }} />
           )}
-          {total === 0 && <div style={{ flex: 1, background: 'var(--border)' }} />}
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 9 }}>
-          <span style={{ color: 'var(--positive)', fontWeight: 600 }}>▲ {cnt.positive}</span>
-          <span style={{ color: 'var(--text-tertiary)' }}>— {cnt.neutral}</span>
-          <span style={{ color: 'var(--negative)', fontWeight: 600 }}>▼ {cnt.negative}</span>
+          <span style={{ color: 'var(--positive)', fontWeight: 600 }}>▲ {cnt.positive}{total > 0 ? ` (${posRatio}%)` : ''}</span>
+          <span style={{ color: 'var(--text-tertiary)' }}>— {cnt.neutral}{total > 0 ? ` (${neuRatio}%)` : ''}</span>
+          <span style={{ color: 'var(--negative)', fontWeight: 600 }}>▼ {cnt.negative}{total > 0 ? ` (${negRatio}%)` : ''}</span>
         </div>
       </div>
 
-      {hot.length > 0 && (
+      {/* HOT NEWS */}
+      {hot.length > 0 ? (
         <div>
-          <div style={{ fontSize: 9, color: 'var(--text-ghost)', marginBottom: 8, letterSpacing: '0.08em' }}>↑ HOT NEWS</div>
+          <div style={{ fontSize: 9, color: 'var(--text-ghost)', marginBottom: 8, letterSpacing: '0.08em', borderTop: '1px solid var(--border)', paddingTop: 10 }}>↑ HOT NEWS</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {hot.map(n => (
-              <a key={n.id} href={n.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <div style={{ fontSize: 10, color: 'var(--text-primary)', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const }}>
-                  {(n.importance_score ?? 0) >= 90 && <span style={{ marginRight: 4 }}>🔥</span>}
-                  {n.title}
+            {hot.map((n, idx) => (
+              <a key={n.id} href={n.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
+                <div style={{
+                  padding: '8px 10px',
+                  borderRadius: 5,
+                  background: 'var(--bg-input)',
+                  border: '1px solid var(--border)',
+                  transition: 'border-color 0.15s',
+                }}
+                  onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-strong)'}
+                  onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border)'}
+                >
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6, marginBottom: 3 }}>
+                    <span style={{ fontSize: 9, color: 'var(--text-ghost)', flexShrink: 0, marginTop: 1 }}>
+                      {idx === 0 ? '01' : idx === 1 ? '02' : '03'}
+                    </span>
+                    <span style={{ fontSize: 10, color: 'var(--text-primary)', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const }}>
+                      {(n.importance_score ?? 0) >= 90 && <span style={{ marginRight: 4 }}>🔥</span>}
+                      {n.title}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 9, color: 'var(--text-ghost)' }}>{n.source}</span>
+                    {n.sentiment && (
+                      <span style={{
+                        fontSize: 8,
+                        color: n.sentiment === 'positive' ? 'var(--positive)' : n.sentiment === 'negative' ? 'var(--negative)' : 'var(--text-ghost)',
+                        letterSpacing: '0.08em',
+                      }}>
+                        {n.sentiment === 'positive' ? '▲ POS' : n.sentiment === 'negative' ? '▼ NEG' : '— NEU'}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div style={{ fontSize: 9, color: 'var(--text-ghost)', marginTop: 2 }}>{n.source}</div>
               </a>
             ))}
           </div>
         </div>
-      )}
-
-      {total === 0 && (
-        <div style={{ fontSize: 10, color: 'var(--text-ghost)', textAlign: 'center', padding: '8px 0' }}>데이터 로딩 중...</div>
+      ) : total === 0 ? (
+        <div style={{ fontSize: 10, color: 'var(--text-ghost)', textAlign: 'center', padding: '12px 0', borderTop: '1px solid var(--border)', marginTop: 4 }}>
+          <div style={{ marginBottom: 4 }}>데이터 로딩 중...</div>
+          <div style={{ fontSize: 9, opacity: 0.6 }}>FETCHING MARKET DATA</div>
+        </div>
+      ) : (
+        <div style={{ fontSize: 10, color: 'var(--text-ghost)', textAlign: 'center', padding: '12px 0', borderTop: '1px solid var(--border)', marginTop: 4 }}>
+          주목 뉴스 없음
+        </div>
       )}
     </div>
   )
@@ -199,10 +242,12 @@ export default function Dashboard() {
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
   const isMobile = useIsMobile()
 
-  const { data: newsData, isLoading } = useQuery({
+  const { data: newsData, isLoading, isError } = useQuery({
     queryKey: ['news', selectedSector],
     queryFn: () => fetchNews({ sector: selectedSector, page_size: 30 }),
     refetchInterval: 1000 * 60 * 2,
+    retry: 3,
+    retryDelay: (attempt) => Math.min(1000 * 2 ** attempt, 10000),
   })
 
   const handleSectorClick = useCallback((sector: string) => {
@@ -253,7 +298,7 @@ export default function Dashboard() {
         </>
       )}
 
-      {/* 티커 바 — 헤더 위에 배치 */}
+      {/* 티커 바 */}
       <TickerBar />
 
       {/* 헤더 */}
@@ -300,25 +345,47 @@ export default function Dashboard() {
 
         {/* 메인 그리드 */}
         <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '1fr 300px', gap: 20 }}>
+
+          {/* 뉴스 피드 */}
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
               <span style={{ fontSize: 10, color: 'var(--text-ghost)', letterSpacing: '0.1em' }}>// NEWS FEED</span>
               <span style={{ fontSize: 10, color: 'var(--text-tertiary)' }}>
                 {selectedSector ? `[${selectedSector}] ${newsData?.total ?? 0}건` : `TOTAL: ${newsData?.total ?? 0}`}
               </span>
+              {isError && (
+                <span style={{ fontSize: 9, color: 'var(--negative)', letterSpacing: '0.08em', marginLeft: 'auto' }}>
+                  ⚠ API 연결 오류
+                </span>
+              )}
             </div>
 
             {isLoading ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {[1,2,3,4,5].map(i => <div key={i} style={{ height: 80, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, opacity: 0.4 }} />)}
+                {[1,2,3,4,5].map(i => (
+                  <div key={i} style={{ height: 80, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, opacity: 0.4, animation: 'breathe 1.5s ease infinite', animationDelay: `${i * 0.1}s` }} />
+                ))}
+              </div>
+            ) : isError ? (
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-ghost)', padding: '32px 24px', textAlign: 'center', border: '1px solid var(--border)', borderRadius: 8 }}>
+                <div style={{ marginBottom: 8, color: 'var(--negative)' }}>FEED DISCONNECTED</div>
+                <div style={{ fontSize: 10, opacity: 0.7 }}>백엔드 서버에 연결할 수 없습니다</div>
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {newsData?.items.map(news => (
-                  <NewsCard key={news.id} news={news} onClick={() => setSelectedNews(prev => prev?.id === news.id ? null : news)} selected={selectedNews?.id === news.id} />
+                  <NewsCard
+                    key={news.id}
+                    news={news}
+                    onClick={() => setSelectedNews(prev => prev?.id === news.id ? null : news)}
+                    selected={selectedNews?.id === news.id}
+                  />
                 ))}
                 {(!newsData?.items || newsData.items.length === 0) && (
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-ghost)', padding: 24, textAlign: 'center' }}>NO MATCHING NEWS</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-ghost)', padding: '32px 24px', textAlign: 'center', border: '1px solid var(--border)', borderRadius: 8 }}>
+                    <div style={{ marginBottom: 6 }}>NO MATCHING NEWS</div>
+                    <div style={{ fontSize: 10, opacity: 0.6 }}>크롤러가 데이터를 수집 중입니다</div>
+                  </div>
                 )}
               </div>
             )}
@@ -326,10 +393,7 @@ export default function Dashboard() {
 
           {/* 사이드바 */}
           <aside style={{ display: 'flex', flexDirection: 'column', gap: 16, position: isMobile ? 'static' : 'sticky', top: isMobile ? 'unset' : 72, alignSelf: isMobile ? 'unset' : 'flex-start', marginTop: isMobile ? 16 : 0 }}>
-            {/* MARKET PULSE — newsData 그대로 내려줌 */}
             <MarketPulse newsData={newsData} />
-
-            {/* BENEFICIARY STOCKS */}
             <StockPanel />
 
             {/* PC 선택 뉴스 패널 */}
