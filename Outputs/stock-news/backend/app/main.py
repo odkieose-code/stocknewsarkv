@@ -146,6 +146,7 @@ async def lifespan(app: FastAPI):
         await conn.run_sync(Base.metadata.create_all)
     scheduler.add_job(run_crawl, "interval", minutes=settings.CRAWL_INTERVAL_MINUTES)
     scheduler.add_job(run_batch_dedup, "cron", hour=3, minute=0)
+    scheduler.add_job(keep_alive, "interval", minutes=14)
     scheduler.start()
     await run_crawl()
     yield
@@ -323,3 +324,13 @@ async def get_beneficiary_stocks(limit: int = 10):
             "reasons": list(dict.fromkeys(item["reasons"]))[:3]})
     output.sort(key=lambda x: x["mention_count"], reverse=True)
     return output[:limit]
+
+
+async def keep_alive():
+    """Render free tier 절전 방지"""
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            await client.get("https://stocknewsarkv.onrender.com/health")
+            print(">>> [keep-alive] ping OK", flush=True)
+    except Exception as e:
+        print(f">>> [keep-alive] ping fail: {e}", flush=True)
