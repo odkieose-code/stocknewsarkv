@@ -4,7 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
-/* ── 다크 모드 (기본) ───────────────────────────────────── */
 :root, [data-theme="dark"] {
   --bg-primary:     #111111;
   --bg-card:        rgba(255,255,255,0.04);
@@ -25,7 +24,6 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* ── 라이트 모드 ─────────────────────────────────────────── */
 [data-theme="light"] {
   --bg-primary:     #F0EDEA;
   --bg-card:        rgba(0,0,0,0.04);
@@ -34,7 +32,7 @@
   --text-primary:   rgba(0,0,0,0.82);
   --text-secondary: rgba(0,0,0,0.56);
   --text-tertiary:  rgba(0,0,0,0.38);
-  --text-ghost:     rgba(0,0,0,0.24);
+  --text-ghost:     rgba(0,0,0,0.22);
   --accent:         rgba(0,80,220,1);
   --accent-soft:    rgba(0,80,220,0.08);
   --border:         rgba(0,0,0,0.10);
@@ -45,23 +43,20 @@
   --header-bg:      rgba(240,237,234,0.92);
 }
 
-/* ── 기본 ────────────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-mono);
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   opacity: 0.035;
   pointer-events: none;
   z-index: 9999;
@@ -69,67 +64,45 @@ body::before {
   background-size: 150px 150px;
 }
 
-/* ── 애니메이션 ──────────────────────────────────────────── */
 @keyframes breathe {
-  0%, 100% { opacity: 0.2; }
-  50%       { opacity: 0.5; }
+  0%,100% { opacity: 0.2; } 50% { opacity: 0.5; }
 }
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+  0%,100% { opacity: 1; } 50% { opacity: 0.3; }
 }
 @keyframes ticker-scroll {
-  0%   { transform: translateX(0); }
+  0% { transform: translateX(0); }
   100% { transform: translateX(-16.6667%); }
 }
 
-/* ── 유틸 ────────────────────────────────────────────────── */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ── 티커 ────────────────────────────────────────────────── */
+/* ── 티커 ────────────────────────── */
 .ticker-wrap {
   overflow: hidden;
   background: var(--ticker-bg);
   border-bottom: 1px solid var(--border);
   height: 30px;
-  display: flex;
-  align-items: center;
+  display: flex; align-items: center;
   user-select: none;
   position: relative;
 }
-.ticker-wrap::before,
-.ticker-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 48px;
-  z-index: 2;
-  pointer-events: none;
+.ticker-wrap::before, .ticker-wrap::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2; pointer-events: none;
 }
 .ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-primary), transparent); }
 .ticker-wrap::after  { right: 0; background: linear-gradient(to left, var(--bg-primary), transparent); }
 
-.ticker-track {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  will-change: transform;
-}
+.ticker-track { display: flex; align-items: center; white-space: nowrap; will-change: transform; }
 .ticker-track.ticker-animate { animation: ticker-scroll 55s linear infinite; }
 .ticker-track.ticker-animate:hover { animation-play-state: paused; }
 
 .ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 20px;
-  font-size: 10px;
-  font-family: var(--font-mono);
-  letter-spacing: 0.06em;
-  border-right: 1px solid var(--border);
-  height: 30px;
-  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0 20px; font-size: 10px; font-family: var(--font-mono);
+  letter-spacing: 0.06em; border-right: 1px solid var(--border);
+  height: 30px; flex-shrink: 0;
 }
 .ticker-item .t-label   { color: var(--text-ghost); font-size: 9px; }
 .ticker-item .t-value   { color: var(--text-secondary); font-weight: 500; }

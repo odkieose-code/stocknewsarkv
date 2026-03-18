@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchNews } from '../utils/api'
-import NewsCard from '../components/NewsCard'
 import StockPanel from '../components/StockPanel'
 import KeywordCloud from '../components/KeywordCloud'
 import { useTheme } from '../App'
@@ -74,29 +73,13 @@ function TickerBar() {
   )
 }
 
-// ── 테마 토글 버튼 ────────────────────────────────────────
+// ── 테마 토글 ─────────────────────────────────────────────
 function ThemeToggle() {
   const { theme, toggle } = useTheme()
   return (
-    <button
-      onClick={toggle}
-      style={{
-        fontFamily: 'var(--font-mono)',
-        fontSize: 10,
-        color: 'var(--text-tertiary)',
-        background: 'none',
-        border: '1px solid var(--border)',
-        borderRadius: 4,
-        padding: '3px 9px',
-        cursor: 'pointer',
-        letterSpacing: '0.08em',
-        transition: 'border-color 0.15s, color 0.15s',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 5,
-      }}
-      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--border-strong)'; (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-secondary)' }}
-      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-tertiary)' }}
+    <button onClick={toggle} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 10px', cursor: 'pointer', letterSpacing: '0.08em', transition: 'border-color 0.15s, color 0.15s' }}
+      onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'var(--border-strong)'; b.style.color = 'var(--text-secondary)' }}
+      onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'var(--border)'; b.style.color = 'var(--text-tertiary)' }}
     >
       {theme === 'dark' ? '◑ LIGHT' : '◐ DARK'}
     </button>
@@ -143,12 +126,16 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
   const posRatio = total > 0 ? Math.round((cnt.positive / total) * 100) : 0
   const negRatio = total > 0 ? Math.round((cnt.negative / total) * 100) : 0
   const neuRatio = total > 0 ? 100 - posRatio - negRatio : 0
-  const hot = newsData?.items.filter(n => (n.importance_score ?? 0) >= 80).sort((a,b) => (b.importance_score??0)-(a.importance_score??0)).slice(0,3) ?? []
+  const hot = newsData?.items
+    .filter(n => (n.importance_score ?? 0) >= 80)
+    .sort((a, b) => (b.importance_score ?? 0) - (a.importance_score ?? 0))
+    .slice(0, 3) ?? []
 
   return (
     <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', fontFamily: 'var(--font-mono)', background: 'var(--bg-card)' }}>
       <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// MARKET PULSE</div>
       <div style={{ padding: 14 }}>
+        {/* Sentiment bar */}
         <div style={{ marginBottom: 14 }}>
           <div style={{ fontSize: 9, color: 'var(--text-tertiary)', marginBottom: 6, letterSpacing: '0.08em' }}>SENTIMENT DIST.</div>
           <div style={{ display: 'flex', height: 5, borderRadius: 3, overflow: 'hidden', background: 'var(--bg-input)', gap: 1 }}>
@@ -158,9 +145,7 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
                 <div style={{ flex: cnt.neutral, background: 'var(--border-strong)', transition: 'flex 0.8s ease', minWidth: cnt.neutral > 0 ? 2 : 0 }} />
                 <div style={{ flex: cnt.negative, background: 'var(--negative)', transition: 'flex 0.8s ease', minWidth: cnt.negative > 0 ? 2 : 0 }} />
               </>
-            ) : (
-              <div style={{ flex: 1, background: 'var(--border)', animation: 'breathe 2s ease infinite' }} />
-            )}
+            ) : <div style={{ flex: 1, background: 'var(--border)', animation: 'breathe 2s ease infinite' }} />}
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 9 }}>
             <span style={{ color: 'var(--positive)', fontWeight: 600 }}>▲ {cnt.positive}{total > 0 ? ` (${posRatio}%)` : ''}</span>
@@ -169,6 +154,7 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
           </div>
         </div>
 
+        {/* HOT NEWS */}
         {hot.length > 0 ? (
           <div>
             <div style={{ fontSize: 9, color: 'var(--text-tertiary)', marginBottom: 8, letterSpacing: '0.08em', borderTop: '1px solid var(--border)', paddingTop: 10 }}>↑ HOT NEWS</div>
@@ -216,8 +202,8 @@ function getNewsLabels(news: NewsItem) {
   else if (news.sentiment === 'negative') labels.push({ text: '▼ 부정', color: 'var(--negative)', bg: 'rgba(255,70,70,0.08)' })
   if ((news.importance_score ?? 0) >= 90) labels.push({ text: '🔥 HOT', color: 'rgba(255,140,0,1)', bg: 'rgba(255,140,0,0.08)' })
   else if ((news.importance_score ?? 0) >= 80) labels.push({ text: '↑ 주목', color: 'var(--accent)', bg: 'var(--accent-soft)' })
-  if (/실적|영업이익|매출|흑자|적자/.test(t)) labels.push({ text: '실적', color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.08)' })
-  if (/AI|반도체|배터리|2차전지/.test(t)) labels.push({ text: '테마', color: 'rgba(0,200,180,1)', bg: 'rgba(0,200,180,0.08)' })
+  if (/실적|영업이익|매출/.test(t)) labels.push({ text: '실적', color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.08)' })
+  if (/AI|반도체|배터리/.test(t)) labels.push({ text: '테마', color: 'rgba(0,200,180,1)', bg: 'rgba(0,200,180,0.08)' })
   if (/미국|연준|Fed|금리|환율/.test(t)) labels.push({ text: '매크로', color: 'rgba(255,190,0,1)', bg: 'rgba(255,190,0,0.08)' })
   return labels.slice(0, 3)
 }
@@ -240,19 +226,9 @@ function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; o
   }
 
   return (
-    <div
-      onClick={handleClick}
-      style={{
-        padding: '12px 14px',
-        border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`,
-        borderRadius: 6,
-        background: selected ? 'var(--accent-soft)' : 'var(--bg-card)',
-        cursor: 'pointer',
-        transition: 'border-color 0.15s, background 0.15s',
-        fontFamily: 'var(--font-mono)',
-      }}
-      onMouseEnter={e => { if (!selected) { (e.currentTarget as HTMLDivElement).style.background = 'var(--bg-card-hover)'; (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-strong)' } }}
-      onMouseLeave={e => { if (!selected) { (e.currentTarget as HTMLDivElement).style.background = 'var(--bg-card)'; (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border)' } }}
+    <div onClick={handleClick} style={{ padding: '12px 14px', border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 6, background: selected ? 'var(--accent-soft)' : 'var(--bg-card)', cursor: 'pointer', transition: 'border-color 0.15s, background 0.15s', fontFamily: 'var(--font-mono)' }}
+      onMouseEnter={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card-hover)'; d.style.borderColor = 'var(--border-strong)' } }}
+      onMouseLeave={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card)'; d.style.borderColor = 'var(--border)' } }}
     >
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 5 }}>
         {(news.importance_score ?? 0) >= 80 && (
@@ -265,9 +241,7 @@ function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; o
       )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
         <span style={{ fontSize: 9, color: sentiColor, fontWeight: 600, letterSpacing: '0.06em' }}>{sentiLabel}</span>
-        {news.sector && (
-          <span style={{ fontSize: 9, padding: '1px 6px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--text-secondary)' }}>{news.sector}</span>
-        )}
+        {news.sector && <span style={{ fontSize: 9, padding: '1px 6px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--text-secondary)' }}>{news.sector}</span>}
         {labels.slice(0, 2).map(lb => (
           <span key={lb.text} style={{ fontSize: 9, padding: '1px 6px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
         ))}
@@ -294,8 +268,32 @@ export default function Dashboard() {
     setSelectedSector(prev => prev === sector ? undefined : sector)
   }, [])
 
+  const Sidebar = () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <MarketPulse newsData={newsData} />
+      <StockPanel />
+      {!isMobile && selectedNews && (
+        <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)', fontFamily: 'var(--font-mono)' }}>
+          {selectedNews.thumbnail && <img src={selectedNews.thumbnail} alt="" style={{ width: '100%', height: 150, objectFit: 'cover', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />}
+          <div style={{ padding: 13 }}>
+            <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 8 }}>// SELECTED</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
+              {selectedNews.sector && <span style={{ fontSize: 9, padding: '2px 7px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--accent)' }}>{selectedNews.sector}</span>}
+              {getNewsLabels(selectedNews).map(lb => (
+                <span key={lb.text} style={{ fontSize: 9, padding: '2px 7px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
+              ))}
+            </div>
+            <p style={{ fontSize: 12, color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: 8, fontWeight: 500 }}>{selectedNews.title}</p>
+            {selectedNews.summary && <p style={{ fontSize: 11, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 10 }}>{selectedNews.summary}</p>}
+            <a href={selectedNews.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none' }}>OPEN SOURCE →</a>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', paddingBottom: 48, transition: 'background 0.25s' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', paddingBottom: 48 }}>
 
       {/* 모바일 Bottom Sheet */}
       {isMobile && (
@@ -333,7 +331,6 @@ export default function Dashboard() {
 
       <TickerBar />
 
-      {/* 헤더 */}
       <header style={{ borderBottom: '1px solid var(--border)', padding: isMobile ? '13px 16px' : '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, background: 'var(--header-bg)', backdropFilter: 'blur(12px)', zIndex: 100 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
           <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: isMobile ? 13 : 17, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-primary)', margin: 0 }}>STOCK_NEWS</h1>
@@ -347,7 +344,6 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* 본문 */}
       <div style={{ maxWidth: isMobile ? 'unset' : 1400, margin: '0 auto', padding: isMobile ? '14px 12px 0' : '22px 24px 0' }}>
 
         {/* 상단 */}
@@ -355,9 +351,7 @@ export default function Dashboard() {
           <div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 10 }}>
               // CATEGORY
-              {selectedSector && (
-                <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>
-              )}
+              {selectedSector && <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>}
             </div>
             <div style={{ overflowX: 'auto', paddingBottom: 4 }} className="scrollbar-hide">
               <KeywordCloud onKeywordClick={handleSectorClick} selectedKeyword={selectedSector} />
@@ -369,9 +363,7 @@ export default function Dashboard() {
             <div>
               <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
                 // CATEGORY
-                {selectedSector && (
-                  <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>
-                )}
+                {selectedSector && <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>}
               </div>
               <KeywordCloud onKeywordClick={handleSectorClick} selectedKeyword={selectedSector} />
             </div>
@@ -391,9 +383,7 @@ export default function Dashboard() {
 
             {isLoading ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {[1,2,3,4,5].map(i => (
-                  <div key={i} style={{ height: 80, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 6, animation: 'breathe 1.5s ease infinite', animationDelay: `${i * 0.1}s` }} />
-                ))}
+                {[1,2,3,4,5].map(i => <div key={i} style={{ height: 80, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 6, animation: 'breathe 1.5s ease infinite', animationDelay: `${i*0.1}s` }} />)}
               </div>
             ) : isError ? (
               <div style={{ fontSize: 11, color: 'var(--text-secondary)', padding: '32px 24px', textAlign: 'center', border: '1px solid var(--border)', borderRadius: 6, fontFamily: 'var(--font-mono)' }}>
@@ -411,35 +401,14 @@ export default function Dashboard() {
               </div>
             )}
 
-            {isMobile && (
-              <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
-                <MarketPulse newsData={newsData} />
-                <StockPanel />
-              </div>
-            )}
+            {/* 모바일: 피드 아래 사이드바 */}
+            {isMobile && <div style={{ marginTop: 20 }}><Sidebar /></div>}
           </section>
 
+          {/* PC 사이드바 */}
           {!isMobile && (
-            <aside style={{ display: 'flex', flexDirection: 'column', gap: 14, position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
-              <MarketPulse newsData={newsData} />
-              <StockPanel />
-              {selectedNews && (
-                <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)', fontFamily: 'var(--font-mono)' }}>
-                  {selectedNews.thumbnail && <img src={selectedNews.thumbnail} alt="" style={{ width: '100%', height: 150, objectFit: 'cover', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />}
-                  <div style={{ padding: 13 }}>
-                    <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 8 }}>// SELECTED</div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
-                      {selectedNews.sector && <span style={{ fontSize: 9, padding: '2px 7px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--accent)' }}>{selectedNews.sector}</span>}
-                      {getNewsLabels(selectedNews).map(lb => (
-                        <span key={lb.text} style={{ fontSize: 9, padding: '2px 7px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
-                      ))}
-                    </div>
-                    <p style={{ fontSize: 12, color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: 8, fontWeight: 500 }}>{selectedNews.title}</p>
-                    {selectedNews.summary && <p style={{ fontSize: 11, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 10 }}>{selectedNews.summary}</p>}
-                    <a href={selectedNews.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none' }}>OPEN SOURCE →</a>
-                  </div>
-                </div>
-              )}
+            <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+              <Sidebar />
             </aside>
           )}
         </div>

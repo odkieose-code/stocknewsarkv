@@ -3,9 +3,9 @@ import { fetchBeneficiaryStocks } from '../utils/api'
 import type { BeneficiaryStock } from '../types'
 
 const impactMap: Record<string, { color: string; bg: string; label: string }> = {
-  '상': { color: 'var(--positive)',  bg: 'rgba(0,200,100,0.08)',  label: '▲ 상' },
-  '중': { color: 'rgba(220,160,0,1)', bg: 'rgba(220,160,0,0.08)', label: '— 중' },
-  '하': { color: 'var(--text-tertiary)', bg: 'var(--bg-input)',   label: '▽ 하' },
+  '상': { color: 'var(--positive)',        bg: 'rgba(0,200,100,0.08)',  label: '▲ 상' },
+  '중': { color: 'rgba(220,160,0,1)',      bg: 'rgba(220,160,0,0.08)', label: '— 중' },
+  '하': { color: 'var(--text-tertiary)',   bg: 'var(--bg-input)',       label: '▽ 하' },
 }
 
 export default function StockPanel() {
@@ -27,8 +27,8 @@ export default function StockPanel() {
         {isLoading ? (
           [1,2,3].map(i => (
             <div key={i} style={{ padding: '10px 14px', borderBottom: '1px solid var(--border)' }}>
-              <div style={{ height: 11, background: 'var(--bg-input)', borderRadius: 3, marginBottom: 5, width: '55%', animation: 'breathe 1.5s ease infinite', animationDelay: `${i * 0.15}s` }} />
-              <div style={{ height: 9, background: 'var(--bg-input)', borderRadius: 3, width: '80%', animation: 'breathe 1.5s ease infinite', animationDelay: `${i * 0.15 + 0.1}s` }} />
+              <div style={{ height: 11, background: 'var(--bg-input)', borderRadius: 3, marginBottom: 5, width: '55%', animation: 'breathe 1.5s ease infinite', animationDelay: `${i*0.15}s` }} />
+              <div style={{ height: 9, background: 'var(--bg-input)', borderRadius: 3, width: '80%', animation: 'breathe 1.5s ease infinite', animationDelay: `${i*0.15+0.1}s` }} />
             </div>
           ))
         ) : isError ? (
