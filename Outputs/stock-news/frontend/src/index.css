@@ -104,7 +104,8 @@ body::before {
   letter-spacing: 0.06em; border-right: 1px solid var(--border);
   height: 30px; flex-shrink: 0;
 }
-.ticker-item .t-label   { color: var(--text-ghost); font-size: 9px; }
+/* 티커명: 헤드라인 폰트 밝기와 동일하게 */
+.ticker-item .t-label   { color: var(--text-primary); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; }
 .ticker-item .t-value   { color: var(--text-secondary); font-weight: 500; }
 .ticker-item .t-up      { color: var(--positive); font-size: 9px; font-weight: 600; }
 .ticker-item .t-down    { color: var(--negative); font-size: 9px; font-weight: 600; }

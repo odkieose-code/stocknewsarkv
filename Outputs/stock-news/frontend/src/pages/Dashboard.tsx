@@ -6,7 +6,6 @@ import KeywordCloud from '../components/KeywordCloud'
 import { useTheme } from '../App'
 import type { NewsItem } from '../types'
 
-// ── 모바일 감지 ───────────────────────────────────────────
 function useIsMobile() {
   const [v, setV] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false)
   useEffect(() => {
@@ -17,13 +16,11 @@ function useIsMobile() {
   return v
 }
 
-// ── 모바일 URL 변환 ───────────────────────────────────────
 function toMobileUrl(url: string): string {
   try {
     const u = new URL(url)
     if (u.hostname.includes('finance.naver.com')) {
-      const aid = u.searchParams.get('article_id')
-      const oid = u.searchParams.get('office_id')
+      const aid = u.searchParams.get('article_id'), oid = u.searchParams.get('office_id')
       if (aid && oid) return `https://n.news.naver.com/mnews/article/${oid}/${aid}`
     }
     if (u.hostname.includes('news.naver.com')) {
@@ -77,7 +74,8 @@ function TickerBar() {
 function ThemeToggle() {
   const { theme, toggle } = useTheme()
   return (
-    <button onClick={toggle} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 10px', cursor: 'pointer', letterSpacing: '0.08em', transition: 'border-color 0.15s, color 0.15s' }}
+    <button onClick={toggle}
+      style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 10px', cursor: 'pointer', letterSpacing: '0.08em', transition: 'border-color 0.15s, color 0.15s' }}
       onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'var(--border-strong)'; b.style.color = 'var(--text-secondary)' }}
       onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'var(--border)'; b.style.color = 'var(--text-tertiary)' }}
     >
@@ -135,7 +133,6 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
     <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', fontFamily: 'var(--font-mono)', background: 'var(--bg-card)' }}>
       <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// MARKET PULSE</div>
       <div style={{ padding: 14 }}>
-        {/* Sentiment bar */}
         <div style={{ marginBottom: 14 }}>
           <div style={{ fontSize: 9, color: 'var(--text-tertiary)', marginBottom: 6, letterSpacing: '0.08em' }}>SENTIMENT DIST.</div>
           <div style={{ display: 'flex', height: 5, borderRadius: 3, overflow: 'hidden', background: 'var(--bg-input)', gap: 1 }}>
@@ -149,12 +146,12 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 9 }}>
             <span style={{ color: 'var(--positive)', fontWeight: 600 }}>▲ {cnt.positive}{total > 0 ? ` (${posRatio}%)` : ''}</span>
-            <span style={{ color: 'var(--text-secondary)' }}>— {cnt.neutral}{total > 0 ? ` (${neuRatio}%)` : ''}</span>
+            {/* neutral은 퍼센트만, 라벨 없이 */}
+            <span style={{ color: 'var(--text-tertiary)' }}>{total > 0 ? `${neuRatio}%` : '--'}</span>
             <span style={{ color: 'var(--negative)', fontWeight: 600 }}>▼ {cnt.negative}{total > 0 ? ` (${negRatio}%)` : ''}</span>
           </div>
         </div>
 
-        {/* HOT NEWS */}
         {hot.length > 0 ? (
           <div>
             <div style={{ fontSize: 9, color: 'var(--text-tertiary)', marginBottom: 8, letterSpacing: '0.08em', borderTop: '1px solid var(--border)', paddingTop: 10 }}>↑ HOT NEWS</div>
@@ -174,9 +171,11 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', paddingLeft: 18 }}>
                       <span style={{ fontSize: 9, color: 'var(--text-tertiary)' }}>{n.source}</span>
-                      <span style={{ fontSize: 8, color: n.sentiment === 'positive' ? 'var(--positive)' : n.sentiment === 'negative' ? 'var(--negative)' : 'var(--text-tertiary)', letterSpacing: '0.06em' }}>
-                        {n.sentiment === 'positive' ? '▲ POS' : n.sentiment === 'negative' ? '▼ NEG' : '— NEU'}
-                      </span>
+                      {n.sentiment !== 'neutral' && (
+                        <span style={{ fontSize: 8, color: n.sentiment === 'positive' ? 'var(--positive)' : 'var(--negative)', letterSpacing: '0.06em' }}>
+                          {n.sentiment === 'positive' ? '▲ POS' : '▼ NEG'}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </a>
@@ -198,21 +197,28 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
 function getNewsLabels(news: NewsItem) {
   const labels: { text: string; color: string; bg: string }[] = []
   const t = news.title
-  if (news.sentiment === 'positive') labels.push({ text: '▲ 긍정', color: 'var(--positive)', bg: 'rgba(0,200,100,0.08)' })
-  else if (news.sentiment === 'negative') labels.push({ text: '▼ 부정', color: 'var(--negative)', bg: 'rgba(255,70,70,0.08)' })
+
+  // sentiment - neutral 제거
+  if (news.sentiment === 'positive') labels.push({ text: '▲ 긍정', color: 'var(--positive)', bg: 'rgba(0,210,100,0.08)' })
+  else if (news.sentiment === 'negative') labels.push({ text: '▼ 부정', color: 'var(--negative)', bg: 'rgba(255,75,75,0.08)' })
+
+  // 중요도
   if ((news.importance_score ?? 0) >= 90) labels.push({ text: '🔥 HOT', color: 'rgba(255,140,0,1)', bg: 'rgba(255,140,0,0.08)' })
   else if ((news.importance_score ?? 0) >= 80) labels.push({ text: '↑ 주목', color: 'var(--accent)', bg: 'var(--accent-soft)' })
-  if (/실적|영업이익|매출/.test(t)) labels.push({ text: '실적', color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.08)' })
-  if (/AI|반도체|배터리/.test(t)) labels.push({ text: '테마', color: 'rgba(0,200,180,1)', bg: 'rgba(0,200,180,0.08)' })
-  if (/미국|연준|Fed|금리|환율/.test(t)) labels.push({ text: '매크로', color: 'rgba(255,190,0,1)', bg: 'rgba(255,190,0,0.08)' })
+
+  // 키워드 기반 카테고리 라벨 (색상 통일)
+  if (/실적|영업이익|매출|어닝/.test(t)) labels.push({ text: '실적', color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.08)' })
+  if (/AI|반도체|배터리|HBM/.test(t)) labels.push({ text: '테마', color: 'rgba(0,190,230,1)', bg: 'rgba(0,190,230,0.08)' })
+  if (/미국|연준|Fed|금리|환율|CPI|FOMC/.test(t)) labels.push({ text: '매크로', color: 'rgba(255,120,0,1)', bg: 'rgba(255,120,0,0.08)' })
+  if (/공시|상장|IPO|유상증자/.test(t)) labels.push({ text: 'IPO·공시', color: 'rgba(255,70,70,1)', bg: 'rgba(255,70,70,0.08)' })
+  if (/M&A|인수|합병/.test(t)) labels.push({ text: 'M&A', color: 'rgba(255,190,0,1)', bg: 'rgba(255,190,0,0.08)' })
+
   return labels.slice(0, 3)
 }
 
 // ── 뉴스 카드 ─────────────────────────────────────────────
 function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; onClick: () => void; selected: boolean; isMobile: boolean }) {
   const labels = getNewsLabels(news)
-  const sentiColor = news.sentiment === 'positive' ? 'var(--positive)' : news.sentiment === 'negative' ? 'var(--negative)' : 'var(--text-tertiary)'
-  const sentiLabel = news.sentiment === 'positive' ? '▲ POS' : news.sentiment === 'negative' ? '▼ NEG' : '— NEU'
   const timeAgo = (() => {
     const diff = Date.now() - new Date(news.published_at).getTime()
     const h = Math.floor(diff / 3600000)
@@ -226,7 +232,8 @@ function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; o
   }
 
   return (
-    <div onClick={handleClick} style={{ padding: '12px 14px', border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 6, background: selected ? 'var(--accent-soft)' : 'var(--bg-card)', cursor: 'pointer', transition: 'border-color 0.15s, background 0.15s', fontFamily: 'var(--font-mono)' }}
+    <div onClick={handleClick}
+      style={{ padding: '12px 14px', border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 6, background: selected ? 'var(--accent-soft)' : 'var(--bg-card)', cursor: 'pointer', transition: 'border-color 0.15s, background 0.15s', fontFamily: 'var(--font-mono)' }}
       onMouseEnter={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card-hover)'; d.style.borderColor = 'var(--border-strong)' } }}
       onMouseLeave={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card)'; d.style.borderColor = 'var(--border)' } }}
     >
@@ -239,10 +246,13 @@ function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; o
       {news.summary && (
         <p style={{ fontSize: 11, color: 'var(--text-secondary)', lineHeight: 1.5, margin: '0 0 7px', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' as const }}>{news.summary}</p>
       )}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 9, color: sentiColor, fontWeight: 600, letterSpacing: '0.06em' }}>{sentiLabel}</span>
-        {news.sector && <span style={{ fontSize: 9, padding: '1px 6px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--text-secondary)' }}>{news.sector}</span>}
-        {labels.slice(0, 2).map(lb => (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+        {/* 섹터 태그 */}
+        {news.sector && (
+          <span style={{ fontSize: 9, padding: '1px 6px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--text-secondary)' }}>{news.sector}</span>
+        )}
+        {/* 라벨들 - neutral 제거됨 */}
+        {labels.map(lb => (
           <span key={lb.text} style={{ fontSize: 9, padding: '1px 6px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
         ))}
         <span style={{ fontSize: 9, color: 'var(--text-tertiary)', marginLeft: 'auto' }}>{news.source} · {timeAgo}</span>
@@ -346,7 +356,6 @@ export default function Dashboard() {
 
       <div style={{ maxWidth: isMobile ? 'unset' : 1400, margin: '0 auto', padding: isMobile ? '14px 12px 0' : '22px 24px 0' }}>
 
-        {/* 상단 */}
         {isMobile ? (
           <div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -370,7 +379,6 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* 메인 그리드 */}
         <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '1fr 290px', gap: 20 }}>
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
@@ -401,11 +409,9 @@ export default function Dashboard() {
               </div>
             )}
 
-            {/* 모바일: 피드 아래 사이드바 */}
             {isMobile && <div style={{ marginTop: 20 }}><Sidebar /></div>}
           </section>
 
-          {/* PC 사이드바 */}
           {!isMobile && (
             <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
               <Sidebar />
