@@ -75,7 +75,7 @@ function ThemeToggle() {
   const { theme, toggle } = useTheme()
   return (
     <button onClick={toggle}
-      style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 10px', cursor: 'pointer', letterSpacing: '0.08em', transition: 'border-color 0.15s, color 0.15s' }}
+      style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 10px', cursor: 'pointer', letterSpacing: '0.08em', transition: 'border-color 0.15s, color 0.15s', whiteSpace: 'nowrap' }}
       onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'var(--border-strong)'; b.style.color = 'var(--text-secondary)' }}
       onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'var(--border)'; b.style.color = 'var(--text-tertiary)' }}
     >
@@ -146,7 +146,6 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 9 }}>
             <span style={{ color: 'var(--positive)', fontWeight: 600 }}>▲ {cnt.positive}{total > 0 ? ` (${posRatio}%)` : ''}</span>
-            {/* neutral은 퍼센트만, 라벨 없이 */}
             <span style={{ color: 'var(--text-tertiary)' }}>{total > 0 ? `${neuRatio}%` : '--'}</span>
             <span style={{ color: 'var(--negative)', fontWeight: 600 }}>▼ {cnt.negative}{total > 0 ? ` (${negRatio}%)` : ''}</span>
           </div>
@@ -164,7 +163,7 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
                   >
                     <div style={{ display: 'flex', gap: 6, marginBottom: 3 }}>
                       <span style={{ fontSize: 9, color: 'var(--text-tertiary)', flexShrink: 0, marginTop: 1 }}>0{idx + 1}</span>
-                      <span style={{ fontSize: 10, color: 'var(--text-primary)', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const }}>
+                      <span style={{ fontSize: 10, color: 'var(--text-primary)', lineHeight: 1.5 }}>
                         {(n.importance_score ?? 0) >= 90 && <span style={{ marginRight: 4 }}>🔥</span>}
                         {n.title}
                       </span>
@@ -197,27 +196,22 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
 function getNewsLabels(news: NewsItem) {
   const labels: { text: string; color: string; bg: string }[] = []
   const t = news.title
-
-  // sentiment - neutral 제거
   if (news.sentiment === 'positive') labels.push({ text: '▲ 긍정', color: 'var(--positive)', bg: 'rgba(0,210,100,0.08)' })
   else if (news.sentiment === 'negative') labels.push({ text: '▼ 부정', color: 'var(--negative)', bg: 'rgba(255,75,75,0.08)' })
-
-  // 중요도
   if ((news.importance_score ?? 0) >= 90) labels.push({ text: '🔥 HOT', color: 'rgba(255,140,0,1)', bg: 'rgba(255,140,0,0.08)' })
   else if ((news.importance_score ?? 0) >= 80) labels.push({ text: '↑ 주목', color: 'var(--accent)', bg: 'var(--accent-soft)' })
-
-  // 키워드 기반 카테고리 라벨 (색상 통일)
   if (/실적|영업이익|매출|어닝/.test(t)) labels.push({ text: '실적', color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.08)' })
   if (/AI|반도체|배터리|HBM/.test(t)) labels.push({ text: '테마', color: 'rgba(0,190,230,1)', bg: 'rgba(0,190,230,0.08)' })
   if (/미국|연준|Fed|금리|환율|CPI|FOMC/.test(t)) labels.push({ text: '매크로', color: 'rgba(255,120,0,1)', bg: 'rgba(255,120,0,0.08)' })
   if (/공시|상장|IPO|유상증자/.test(t)) labels.push({ text: 'IPO·공시', color: 'rgba(255,70,70,1)', bg: 'rgba(255,70,70,0.08)' })
   if (/M&A|인수|합병/.test(t)) labels.push({ text: 'M&A', color: 'rgba(255,190,0,1)', bg: 'rgba(255,190,0,0.08)' })
-
   return labels.slice(0, 3)
 }
 
 // ── 뉴스 카드 ─────────────────────────────────────────────
-function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; onClick: () => void; selected: boolean; isMobile: boolean }) {
+function NewsCardItem({ news, onClick, selected, isMobile }: {
+  news: NewsItem; onClick: () => void; selected: boolean; isMobile: boolean
+}) {
   const labels = getNewsLabels(news)
   const timeAgo = (() => {
     const diff = Date.now() - new Date(news.published_at).getTime()
@@ -233,30 +227,71 @@ function NewsCardItem({ news, onClick, selected, isMobile }: { news: NewsItem; o
 
   return (
     <div onClick={handleClick}
-      style={{ padding: '12px 14px', border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 6, background: selected ? 'var(--accent-soft)' : 'var(--bg-card)', cursor: 'pointer', transition: 'border-color 0.15s, background 0.15s', fontFamily: 'var(--font-mono)' }}
+      style={{
+        padding: isMobile ? '14px 12px' : '12px 14px',
+        border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`,
+        borderRadius: 6,
+        background: selected ? 'var(--accent-soft)' : 'var(--bg-card)',
+        cursor: 'pointer',
+        transition: 'border-color 0.15s, background 0.15s',
+        fontFamily: 'var(--font-mono)',
+      }}
       onMouseEnter={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card-hover)'; d.style.borderColor = 'var(--border-strong)' } }}
       onMouseLeave={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card)'; d.style.borderColor = 'var(--border)' } }}
     >
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 5 }}>
+      {/* HOT 뱃지 + 헤드라인 - 전체 표시 (clamp 없음) */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
         {(news.importance_score ?? 0) >= 80 && (
-          <span style={{ fontSize: 9, color: 'var(--accent)', background: 'var(--accent-soft)', padding: '2px 6px', borderRadius: 3, whiteSpace: 'nowrap', marginTop: 2, flexShrink: 0 }}>HOT</span>
+          <span style={{ fontSize: 9, color: 'var(--accent)', background: 'var(--accent-soft)', padding: '2px 6px', borderRadius: 3, whiteSpace: 'nowrap', marginTop: 3, flexShrink: 0 }}>HOT</span>
         )}
-        <p style={{ fontSize: 13, color: 'var(--text-primary)', lineHeight: 1.55, margin: 0, fontWeight: 500, flex: 1 }}>{news.title}</p>
+        {/* 헤드라인: 모바일 14px / PC 13px, 줄바꿈 허용 */}
+        <p style={{
+          fontSize: isMobile ? 14 : 13,
+          color: 'var(--text-primary)',
+          lineHeight: isMobile ? 1.65 : 1.55,
+          margin: 0,
+          fontWeight: 500,
+          flex: 1,
+          wordBreak: 'keep-all',  // 한국어 자연스러운 줄바꿈
+          overflowWrap: 'break-word',
+        }}>
+          {news.title}
+        </p>
       </div>
+
+      {/* 요약 - 모바일도 1줄 */}
       {news.summary && (
-        <p style={{ fontSize: 11, color: 'var(--text-secondary)', lineHeight: 1.5, margin: '0 0 7px', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' as const }}>{news.summary}</p>
+        <p style={{
+          fontSize: isMobile ? 12 : 11,
+          color: 'var(--text-secondary)',
+          lineHeight: 1.5,
+          margin: '0 0 8px',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: isMobile ? 2 : 1,
+          WebkitBoxOrient: 'vertical' as const,
+        }}>
+          {news.summary}
+        </p>
       )}
+
+      {/* 메타 */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
-        {/* 섹터 태그 */}
         {news.sector && (
           <span style={{ fontSize: 9, padding: '1px 6px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--text-secondary)' }}>{news.sector}</span>
         )}
-        {/* 라벨들 - neutral 제거됨 */}
         {labels.map(lb => (
           <span key={lb.text} style={{ fontSize: 9, padding: '1px 6px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
         ))}
-        <span style={{ fontSize: 9, color: 'var(--text-tertiary)', marginLeft: 'auto' }}>{news.source} · {timeAgo}</span>
+        <span style={{ fontSize: 9, color: 'var(--text-tertiary)', marginLeft: 'auto' }}>
+          {isMobile ? `${timeAgo}` : `${news.source} · ${timeAgo}`}
+        </span>
       </div>
+
+      {/* 모바일: 출처 별도 줄 */}
+      {isMobile && (
+        <div style={{ marginTop: 4, fontSize: 9, color: 'var(--text-ghost)' }}>{news.source}</div>
+      )}
     </div>
   )
 }
@@ -327,9 +362,9 @@ export default function Dashboard() {
                       <span key={lb.text} style={{ fontSize: 9, padding: '2px 7px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
                     ))}
                   </div>
-                  <p style={{ fontSize: 13, color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: 10, fontWeight: 500 }}>{selectedNews.title}</p>
-                  {selectedNews.summary && <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 16 }}>{selectedNews.summary}</p>}
-                  <a href={toMobileUrl(selectedNews.url)} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: 11, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none', padding: '8px 14px', border: '1px solid var(--accent)', borderRadius: 4 }}>
+                  <p style={{ fontSize: 15, color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: 10, fontWeight: 500, wordBreak: 'keep-all' }}>{selectedNews.title}</p>
+                  {selectedNews.summary && <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 16 }}>{selectedNews.summary}</p>}
+                  <a href={toMobileUrl(selectedNews.url)} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: 12, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none', padding: '10px 16px', border: '1px solid var(--accent)', borderRadius: 4 }}>
                     원문 보기 →
                   </a>
                 </div>
@@ -341,23 +376,31 @@ export default function Dashboard() {
 
       <TickerBar />
 
-      <header style={{ borderBottom: '1px solid var(--border)', padding: isMobile ? '13px 16px' : '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, background: 'var(--header-bg)', backdropFilter: 'blur(12px)', zIndex: 100 }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-          <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: isMobile ? 13 : 17, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-primary)', margin: 0 }}>STOCK_NEWS</h1>
+      <header style={{
+        borderBottom: '1px solid var(--border)',
+        padding: isMobile ? '12px 14px' : '14px 24px',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        position: 'sticky', top: 0,
+        background: 'var(--header-bg)',
+        backdropFilter: 'blur(12px)',
+        zIndex: 100,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+          <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: isMobile ? 12 : 17, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-primary)', margin: 0 }}>STOCK_NEWS</h1>
           <span style={{ fontSize: 9, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>v1.0.0</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <ThemeToggle />
           <div style={{ display: 'flex', alignItems: 'center', fontSize: 10, color: 'var(--text-secondary)', letterSpacing: '0.08em' }}>
-            <LiveDot />LIVE · 2MIN
+            <LiveDot />{isMobile ? '' : 'LIVE · 2MIN'}
           </div>
         </div>
       </header>
 
-      <div style={{ maxWidth: isMobile ? 'unset' : 1400, margin: '0 auto', padding: isMobile ? '14px 12px 0' : '22px 24px 0' }}>
+      <div style={{ maxWidth: isMobile ? 'unset' : 1400, margin: '0 auto', padding: isMobile ? '12px 10px 0' : '22px 24px 0' }}>
 
         {isMobile ? (
-          <div style={{ marginBottom: 14 }}>
+          <div style={{ marginBottom: 12 }}>
             <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 10 }}>
               // CATEGORY
               {selectedSector && <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>}
@@ -381,17 +424,17 @@ export default function Dashboard() {
 
         <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '1fr 290px', gap: 20 }}>
           <section>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// NEWS FEED</span>
               <span style={{ fontSize: 10, color: 'var(--text-secondary)' }}>
                 {selectedSector ? `[${selectedSector}] ${newsData?.total ?? 0}건` : `TOTAL: ${newsData?.total ?? 0}`}
               </span>
-              {isError && <span style={{ fontSize: 9, color: 'var(--negative)', marginLeft: 'auto' }}>⚠ API 연결 오류</span>}
+              {isError && <span style={{ fontSize: 9, color: 'var(--negative)', marginLeft: 'auto' }}>⚠ 연결 오류</span>}
             </div>
 
             {isLoading ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {[1,2,3,4,5].map(i => <div key={i} style={{ height: 80, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 6, animation: 'breathe 1.5s ease infinite', animationDelay: `${i*0.1}s` }} />)}
+                {[1,2,3,4,5].map(i => <div key={i} style={{ height: isMobile ? 90 : 80, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 6, animation: 'breathe 1.5s ease infinite', animationDelay: `${i*0.1}s` }} />)}
               </div>
             ) : isError ? (
               <div style={{ fontSize: 11, color: 'var(--text-secondary)', padding: '32px 24px', textAlign: 'center', border: '1px solid var(--border)', borderRadius: 6, fontFamily: 'var(--font-mono)' }}>
@@ -399,9 +442,15 @@ export default function Dashboard() {
                 <div style={{ fontSize: 10 }}>백엔드 서버에 연결할 수 없습니다</div>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 6 : 5 }}>
                 {newsData?.items.map(news => (
-                  <NewsCardItem key={news.id} news={news} onClick={() => setSelectedNews(prev => prev?.id === news.id ? null : news)} selected={selectedNews?.id === news.id} isMobile={isMobile} />
+                  <NewsCardItem
+                    key={news.id}
+                    news={news}
+                    onClick={() => setSelectedNews(prev => prev?.id === news.id ? null : news)}
+                    selected={selectedNews?.id === news.id}
+                    isMobile={isMobile}
+                  />
                 ))}
                 {(!newsData?.items || newsData.items.length === 0) && (
                   <div style={{ fontSize: 11, color: 'var(--text-secondary)', padding: '32px 24px', textAlign: 'center', border: '1px solid var(--border)', borderRadius: 6, fontFamily: 'var(--font-mono)' }}>NO MATCHING NEWS</div>
