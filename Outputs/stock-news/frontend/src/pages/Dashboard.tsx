@@ -253,7 +253,7 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
           fontWeight: 500,
           flex: 1,
           wordBreak: 'keep-all',  // 한국어 자연스러운 줄바꿈
-          overflowWrap: 'break-word', minHeight: isMobile ? '46px' : '40px',
+          overflowWrap: 'break-word', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', minHeight: isMobile ? '46px' : '40px',
         }}>
           {news.title}
         </p>
