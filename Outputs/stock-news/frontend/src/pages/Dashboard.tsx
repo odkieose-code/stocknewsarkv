@@ -233,7 +233,7 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
         borderRadius: 6,
         background: selected ? 'var(--accent-soft)' : 'var(--bg-card)',
         cursor: 'pointer',
-        transition: 'border-color 0.15s, background 0.15s',
+        transition: 'border-color 0.15s, background 0.15s', minHeight: isMobile ? '110px' : '95px',
         fontFamily: 'var(--font-mono)',
       }}
       onMouseEnter={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card-hover)'; d.style.borderColor = 'var(--border-strong)' } }}
@@ -253,7 +253,7 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
           fontWeight: 500,
           flex: 1,
           wordBreak: 'keep-all',  // 한국어 자연스러운 줄바꿈
-          overflowWrap: 'break-word',
+          overflowWrap: 'break-word', minHeight: isMobile ? '46px' : '40px',
         }}>
           {news.title}
         </p>
