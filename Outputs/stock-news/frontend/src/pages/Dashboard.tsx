@@ -450,6 +450,7 @@ export default function Dashboard() {
           {/* 좌측: Market Pulse */}
           {!isMobile && (
             <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10, height: 20 }} />
               <MarketPulse newsData={newsData} />
             </aside>
           )}
@@ -501,6 +502,7 @@ export default function Dashboard() {
           {/* 우측: 수혜주 */}
           {!isMobile && (
             <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10, height: 20 }} />
               <StockPanel noHover />
             </aside>
           )}
