@@ -485,7 +485,18 @@ export default function Dashboard() {
           </section>
 
           {!isMobile && (
-            <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+            <aside style={{
+              position: 'sticky',
+              top: 66,
+              alignSelf: 'flex-start',
+              maxHeight: 'calc(100vh - 86px)',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+              className="scrollbar-hide"
+            >
               <Sidebar />
             </aside>
           )}
