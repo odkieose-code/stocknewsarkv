@@ -426,7 +426,10 @@ export default function Dashboard() {
             </div>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 220px 220px', gap: 20, marginBottom: 22 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr 220px', gap: 20, marginBottom: 22, alignItems: 'start' }}>
+            {/* 좌측: 빈 공간 (Market Pulse 컬럼과 정렬) */}
+            <div />
+            {/* 중앙: SystemStatus + Category */}
             <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 20 }}>
               <SystemStatus />
               <div>
@@ -437,13 +440,21 @@ export default function Dashboard() {
                 <KeywordCloud onKeywordClick={handleSectorClick} selectedKeyword={selectedSector} />
               </div>
             </div>
-            {/* 상단 우측 2칸은 빈 공간 — 뉴스 카드와 시작라인 맞춤용 */}
-            <div />
+            {/* 우측: 빈 공간 (수혜주 컬럼과 정렬) */}
             <div />
           </div>
         )}
 
-        <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '1fr 220px 220px', gap: 20 }}>
+        <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '220px 1fr 220px', gap: 20, alignItems: 'start' }}>
+
+          {/* 좌측: Market Pulse */}
+          {!isMobile && (
+            <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+              <MarketPulse newsData={newsData} />
+            </aside>
+          )}
+
+          {/* 중앙: 뉴스 카드 */}
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// NEWS FEED</span>
@@ -487,18 +498,11 @@ export default function Dashboard() {
             )}
           </section>
 
+          {/* 우측: 수혜주 */}
           {!isMobile && (
-            <>
-              {/* Market Pulse — 콘텐츠 높이에 맞춤 */}
-              <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
-                <MarketPulse newsData={newsData} />
-              </aside>
-
-              {/* 수혜주 — 콘텐츠 높이에 맞춤 */}
-              <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
-                <StockPanel />
-              </aside>
-            </>
+            <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+              <StockPanel noHover />
+            </aside>
           )}
         </div>
       </div>

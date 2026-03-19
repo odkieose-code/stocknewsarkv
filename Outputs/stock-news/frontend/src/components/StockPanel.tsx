@@ -27,7 +27,7 @@ function getGrade(stock: BeneficiaryStock): {
   }
 }
 
-export default function StockPanel({ borderless }: { borderless?: boolean } = {}) {
+export default function StockPanel({ borderless, noHover }: { borderless?: boolean; noHover?: boolean } = {}) {
   const { data: stocks, isLoading, isError } = useQuery({
     queryKey: ['beneficiaryStocks'],
     queryFn: () => fetchBeneficiaryStocks(10),
@@ -86,8 +86,8 @@ export default function StockPanel({ borderless }: { borderless?: boolean } = {}
                 <li
                   key={stock.name}
                   style={{ padding: '9px 14px', borderBottom: idx < stocks.length - 1 ? '1px solid var(--border)' : 'none', transition: 'background 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget as HTMLLIElement).style.background = 'var(--bg-card-hover)'}
-                  onMouseLeave={e => (e.currentTarget as HTMLLIElement).style.background = 'transparent'}
+                  onMouseEnter={e => { if (!noHover) (e.currentTarget as HTMLLIElement).style.background = 'var(--bg-card-hover)' }}
+                  onMouseLeave={e => { if (!noHover) (e.currentTarget as HTMLLIElement).style.background = 'transparent' }}
                 >
                   {/* 종목명 + 등급 */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
