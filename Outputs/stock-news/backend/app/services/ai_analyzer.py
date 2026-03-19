@@ -434,7 +434,7 @@ class OpenAIAnalyzer(BaseAIAnalyzer):
 class ClaudeAnalyzer(BaseAIAnalyzer):
     def __init__(self):
         self.client = AsyncAnthropic(api_key=settings.ANTHROPIC_API_KEY)
-        self.model = "claude-3-5-haiku-20241022"
+        self.model = "claude-haiku-4-5-20251001"
 
     async def _call(self, prompt: str) -> str:
         r = await self.client.messages.create(
