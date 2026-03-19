@@ -233,7 +233,7 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
         borderRadius: 6,
         background: selected ? 'var(--accent-soft)' : 'var(--bg-card)',
         cursor: 'pointer',
-        transition: 'border-color 0.15s, background 0.15s', minHeight: isMobile ? '110px' : '95px',
+        transition: 'border-color 0.15s, background 0.15s',
         fontFamily: 'var(--font-mono)',
       }}
       onMouseEnter={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card-hover)'; d.style.borderColor = 'var(--border-strong)' } }}
@@ -253,7 +253,7 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
           fontWeight: 500,
           flex: 1,
           wordBreak: 'keep-all',  // 한국어 자연스러운 줄바꿈
-          overflowWrap: 'break-word', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', minHeight: isMobile ? '46px' : '40px',
+          overflowWrap: 'break-word',
         }}>
           {news.title}
         </p>
@@ -315,13 +315,16 @@ export default function Dashboard() {
 
   const Sidebar = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <MarketPulse newsData={newsData} />
-      <StockPanel />
+
+      {/* SELECTED: 선택 시 최상단 표시 */}
       {!isMobile && selectedNews && (
-        <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)', fontFamily: 'var(--font-mono)' }}>
-          {selectedNews.thumbnail && <img src={selectedNews.thumbnail} alt="" style={{ width: '100%', height: 150, objectFit: 'cover', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />}
+        <div style={{ border: '1px solid var(--accent)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)', fontFamily: 'var(--font-mono)', animation: 'fadeInUp 0.2s ease' }}>
+          {selectedNews.thumbnail && <img src={selectedNews.thumbnail} alt="" style={{ width: '100%', height: 130, objectFit: 'cover', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />}
           <div style={{ padding: 13 }}>
-            <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 8 }}>// SELECTED</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+              <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// SELECTED</div>
+              <button onClick={() => setSelectedNews(null)} style={{ fontSize: 16, color: 'var(--text-ghost)', background: 'none', border: 'none', cursor: 'pointer', lineHeight: 1, padding: '0 2px' }}>×</button>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
               {selectedNews.sector && <span style={{ fontSize: 9, padding: '2px 7px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--accent)' }}>{selectedNews.sector}</span>}
               {getNewsLabels(selectedNews).map(lb => (
@@ -334,6 +337,9 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      <MarketPulse newsData={newsData} />
+      {!selectedNews && <StockPanel />}
     </div>
   )
 
