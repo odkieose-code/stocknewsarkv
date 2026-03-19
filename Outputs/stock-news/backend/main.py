@@ -259,12 +259,14 @@ async def get_ticker():
     async with httpx.AsyncClient(timeout=8.0) as client:
         for label, symbol in TICKER_SYMBOLS_MAP.items():
             try:
-                url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=2d"
+                url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=5d"
                 r = await client.get(url, headers=headers)
                 data = r.json()
-                meta = data["chart"]["result"][0]["meta"]
-                price = meta.get("regularMarketPrice") or meta.get("previousClose")
-                prev  = meta.get("regularMarketPreviousClose") or meta.get("previousClose")
+                result = data["chart"]["result"][0]
+                closes = result["indicators"]["quote"][0]["close"]
+                closes = [c for c in closes if c is not None]
+                price = closes[-1] if len(closes) >= 1 else None
+                prev  = closes[-2] if len(closes) >= 2 else None
                 chg   = ((price - prev) / prev * 100) if price and prev else None
                 if label == "USD/KRW":
                     value = f"{price:.1f}" if price else "--"
