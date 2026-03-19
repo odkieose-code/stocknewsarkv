@@ -334,3 +334,23 @@ async def keep_alive():
             print(">>> [keep-alive] ping OK", flush=True)
     except Exception as e:
         print(f">>> [keep-alive] ping fail: {e}", flush=True)
+
+
+@app.get("/admin/clear-empty-titles")
+async def clear_empty_titles():
+    from sqlalchemy import select, delete
+    async with AsyncSessionLocal() as db:
+        all_news = await db.execute(select(News.id, News.title))
+        to_delete = [r.id for r in all_news.all() if not r.title or len(r.title.strip()) < 8]
+        if to_delete:
+            await db.execute(delete(News).where(News.id.in_(to_delete)))
+            await db.commit()
+            return {"status": f"빈 제목 뉴스 {len(to_delete)}건 삭제 완료"}
+    return {"status": "삭제할 뉴스 없음"}
+
+
+@app.get("/admin/crawl-now")
+async def crawl_now():
+    import asyncio
+    asyncio.create_task(run_crawl())
+    return {"status": "크롤링 시작됨"}
