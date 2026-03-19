@@ -2,11 +2,29 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchBeneficiaryStocks } from '../utils/api'
 import type { BeneficiaryStock } from '../types'
 
-// 영향도: 투자자가 직관적으로 이해할 수 있는 표현으로
-const impactMap: Record<string, { color: string; bg: string; label: string; bar: number }> = {
-  '상': { color: 'var(--positive)',      bg: 'rgba(0,200,100,0.08)',  label: '강한 수혜', bar: 100 },
-  '중': { color: 'rgba(220,160,0,1)',    bg: 'rgba(220,160,0,0.08)', label: '수혜 예상', bar: 60 },
-  '하': { color: 'var(--text-tertiary)', bg: 'var(--bg-input)',       label: '소폭 영향', bar: 30 },
+// ── 수혜 등급 판정 기준 ──────────────────────────────────
+// mention_count(언급 횟수) + avg_impact(AI 분석 영향도) 조합
+//
+// 🔥 강력 수혜  : 언급 3건↑ AND 영향 '상'
+// ✦  수혜 유력  : 언급 2건↑ OR  영향 '상'
+// ·  관심 종목  : 언급 1건,  영향 '중/하'
+
+function getGrade(stock: BeneficiaryStock): {
+  label: string; color: string; bg: string; border: string; icon: string
+} {
+  const { mention_count: m, avg_impact: imp } = stock
+  if (m >= 3 && imp === '상') return {
+    label: '강력 수혜', icon: '🔥',
+    color: 'rgba(255,80,80,1)', bg: 'rgba(255,80,80,0.10)', border: 'rgba(255,80,80,0.5)',
+  }
+  if (m >= 2 || imp === '상') return {
+    label: '수혜 유력', icon: '✦',
+    color: 'var(--positive)', bg: 'rgba(0,200,100,0.09)', border: 'rgba(0,200,100,0.45)',
+  }
+  return {
+    label: '관심 종목', icon: '·',
+    color: 'var(--text-secondary)', bg: 'var(--bg-input)', border: 'var(--border)',
+  }
 }
 
 export default function StockPanel() {
@@ -22,14 +40,30 @@ export default function StockPanel() {
 
       {/* 헤더 */}
       <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// 오늘의 수혜주</span>
-          <span style={{ fontSize: 9, color: 'var(--text-ghost)', marginLeft: 8 }}>뉴스 언급 기반</span>
+          <span style={{ fontSize: 9, color: 'var(--text-ghost)' }}>뉴스 언급 기반</span>
         </div>
         {stocks && stocks.length > 0 && (
-          <span style={{ fontSize: 9, color: 'var(--text-tertiary)' }}>{stocks.length}종목</span>
+          <span style={{ fontSize: 9, color: 'var(--text-ghost)' }}>{stocks.length}종목</span>
         )}
       </div>
+
+      {/* 등급 범례 */}
+      {stocks && stocks.length > 0 && (
+        <div style={{ padding: '7px 14px', borderBottom: '1px solid var(--border)', display: 'flex', gap: 10 }}>
+          {[
+            { icon: '🔥', label: '강력 수혜', desc: '3건↑·영향高' },
+            { icon: '✦',  label: '수혜 유력', desc: '2건↑·영향高' },
+            { icon: '·',  label: '관심 종목', desc: '1건 언급'    },
+          ].map(g => (
+            <div key={g.label} style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+              <span style={{ fontSize: 9 }}>{g.icon}</span>
+              <span style={{ fontSize: 8, color: 'var(--text-ghost)', letterSpacing: '0.04em' }}>{g.desc}</span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div>
         {isLoading ? (
@@ -42,53 +76,46 @@ export default function StockPanel() {
         ) : isError ? (
           <div style={{ padding: '18px 14px', textAlign: 'center' }}>
             <div style={{ fontSize: 10, color: 'var(--negative)', marginBottom: 3 }}>연결 오류</div>
-            <div style={{ fontSize: 9, color: 'var(--text-tertiary)' }}>API 응답 없음</div>
           </div>
         ) : stocks && stocks.length > 0 ? (
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {stocks.map((stock: BeneficiaryStock, idx) => {
-              const impact = impactMap[stock.avg_impact] || impactMap['하']
+              const grade = getGrade(stock)
+              const barWidth = Math.min(stock.mention_count * 18, 100)
               return (
                 <li
                   key={stock.name}
-                  style={{ padding: '10px 14px', borderBottom: idx < stocks.length - 1 ? '1px solid var(--border)' : 'none', transition: 'background 0.15s', cursor: 'default' }}
+                  style={{ padding: '9px 14px', borderBottom: idx < stocks.length - 1 ? '1px solid var(--border)' : 'none', transition: 'background 0.15s' }}
                   onMouseEnter={e => (e.currentTarget as HTMLLIElement).style.background = 'var(--bg-card-hover)'}
                   onMouseLeave={e => (e.currentTarget as HTMLLIElement).style.background = 'transparent'}
                 >
-                  {/* 상단: 순위 + 종목명 + 수혜 레이블 */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <span style={{ fontSize: 9, color: 'var(--text-ghost)', minWidth: 16 }}>{String(idx + 1).padStart(2, '0')}</span>
+                  {/* 종목명 + 등급 */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                      <span style={{ fontSize: 9, color: 'var(--text-ghost)', minWidth: 14 }}>{String(idx + 1).padStart(2, '0')}</span>
                       <span style={{ fontSize: 12, color: 'var(--text-primary)', fontWeight: 600 }}>{stock.name}</span>
                     </div>
                     <span style={{
-                      fontSize: 9, color: impact.color,
-                      background: impact.bg,
-                      padding: '2px 8px', borderRadius: 3,
-                      border: `1px solid ${impact.color}`,
-                      fontWeight: 600, whiteSpace: 'nowrap',
+                      fontSize: 9, fontWeight: 600,
+                      color: grade.color, background: grade.bg,
+                      border: `1px solid ${grade.border}`,
+                      padding: '2px 7px', borderRadius: 3, whiteSpace: 'nowrap',
                     }}>
-                      {impact.label}
+                      {grade.icon} {grade.label}
                     </span>
                   </div>
 
                   {/* 언급 횟수 바 */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: stock.reasons.length > 0 ? 5 : 0 }}>
-                    <span style={{ fontSize: 9, color: 'var(--text-ghost)', whiteSpace: 'nowrap' }}>뉴스 {stock.mention_count}건 언급</span>
-                    <div style={{ flex: 1, height: 3, background: 'var(--bg-input)', borderRadius: 2, overflow: 'hidden' }}>
-                      <div style={{
-                        height: '100%',
-                        width: `${Math.min(stock.mention_count * 15, 100)}%`,
-                        background: impact.color,
-                        borderRadius: 2,
-                        transition: 'width 0.6s ease',
-                      }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: stock.reasons[0] ? 4 : 0 }}>
+                    <span style={{ fontSize: 9, color: 'var(--text-ghost)', whiteSpace: 'nowrap' }}>뉴스 {stock.mention_count}건</span>
+                    <div style={{ flex: 1, height: 2, background: 'var(--bg-input)', borderRadius: 1, overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: `${barWidth}%`, background: grade.color, borderRadius: 1, transition: 'width 0.6s ease' }} />
                     </div>
                   </div>
 
                   {/* 이유 */}
-                  {stock.reasons.length > 0 && (
-                    <p style={{ fontSize: 10, color: 'var(--text-secondary)', margin: '0 0 0 24px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {stock.reasons[0] && (
+                    <p style={{ fontSize: 10, color: 'var(--text-secondary)', margin: '0 0 0 21px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {stock.reasons[0]}
                     </p>
                   )}

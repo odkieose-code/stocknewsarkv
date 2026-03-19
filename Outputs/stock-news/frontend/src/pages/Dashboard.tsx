@@ -221,24 +221,34 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
   })()
 
   const handleClick = () => {
-    const openUrl = isMobile ? toMobileUrl(news.url) : toMobileUrl(news.url)
-    onClick()
-    window.open(openUrl, '_blank', 'noopener,noreferrer')
+    if (isMobile) {
+      onClick() // 모바일: bottom sheet 열기
+    } else {
+      window.open(toMobileUrl(news.url), '_blank', 'noopener,noreferrer')
+    }
   }
 
   return (
     <div onClick={handleClick}
       style={{
         padding: isMobile ? '14px 12px' : '12px 14px',
-        border: `1px solid ${selected ? 'var(--accent)' : 'var(--border)'}`,
+        border: '1px solid var(--border)',
         borderRadius: 6,
-        background: selected ? 'var(--accent-soft)' : 'var(--bg-card)',
+        background: 'var(--bg-card)',
         cursor: 'pointer',
-        transition: 'border-color 0.15s, background 0.15s',
+        transition: 'border-color 0.15s, background 0.15s, transform 0.1s',
         fontFamily: 'var(--font-mono)',
       }}
-      onMouseEnter={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card-hover)'; d.style.borderColor = 'var(--border-strong)' } }}
-      onMouseLeave={e => { if (!selected) { const d = e.currentTarget as HTMLDivElement; d.style.background = 'var(--bg-card)'; d.style.borderColor = 'var(--border)' } }}
+      onMouseEnter={e => {
+        const d = e.currentTarget as HTMLDivElement
+        d.style.background = 'var(--bg-card-hover)'
+        d.style.borderColor = 'var(--border-strong)'
+      }}
+      onMouseLeave={e => {
+        const d = e.currentTarget as HTMLDivElement
+        d.style.background = 'var(--bg-card)'
+        d.style.borderColor = 'var(--border)'
+      }}
     >
       {/* HOT 뱃지 + 헤드라인 - 전체 표시 (clamp 없음) */}
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
@@ -345,29 +355,6 @@ export default function Dashboard() {
 
   const Sidebar = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-
-      {/* SELECTED: 선택 시 최상단 표시 */}
-      {!isMobile && selectedNews && (
-        <div style={{ border: '1px solid var(--accent)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)', fontFamily: 'var(--font-mono)', animation: 'fadeInUp 0.2s ease' }}>
-          {selectedNews.thumbnail && <img src={selectedNews.thumbnail} alt="" style={{ width: '100%', height: 130, objectFit: 'cover', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />}
-          <div style={{ padding: 13 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// SELECTED</div>
-              <button onClick={() => setSelectedNews(null)} style={{ fontSize: 16, color: 'var(--text-ghost)', background: 'none', border: 'none', cursor: 'pointer', lineHeight: 1, padding: '0 2px' }}>×</button>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
-              {selectedNews.sector && <span style={{ fontSize: 9, padding: '2px 7px', border: '1px solid var(--border)', borderRadius: 3, color: 'var(--accent)' }}>{selectedNews.sector}</span>}
-              {getNewsLabels(selectedNews).map(lb => (
-                <span key={lb.text} style={{ fontSize: 9, padding: '2px 7px', border: `1px solid ${lb.color}`, borderRadius: 3, color: lb.color, background: lb.bg }}>{lb.text}</span>
-              ))}
-            </div>
-            <p style={{ fontSize: 12, color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: 8, fontWeight: 500 }}>{selectedNews.title}</p>
-            {selectedNews.summary && <p style={{ fontSize: 11, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 10 }}>{selectedNews.summary}</p>}
-            <a href={isMobile ? toMobileUrl(selectedNews.url) : selectedNews.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none' }}>OPEN SOURCE →</a>
-          </div>
-        </div>
-      )}
-
       <MarketPulse newsData={newsData} />
       <StockPanel />
     </div>
