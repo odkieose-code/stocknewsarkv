@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchNews, fetchBeneficiaryStocks } from '../utils/api'
+import { fetchNews } from '../utils/api'
 import StockPanel from '../components/StockPanel'
 import KeywordCloud from '../components/KeywordCloud'
 import { useTheme } from '../App'
@@ -335,7 +335,6 @@ function classifyNews(news: NewsItem): string {
 export default function Dashboard() {
   const [selectedSector, setSelectedSector] = useState<string>()
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
-  const [sidebarTab, setSidebarTab] = useState<'pulse' | 'stocks'>('pulse')
   const isMobile = useIsMobile()
 
   const { data: newsData, isLoading, isError } = useQuery({
@@ -343,12 +342,6 @@ export default function Dashboard() {
     queryFn: () => fetchNews({ page_size: 60 }),
     refetchInterval: 1000 * 60 * 2,
     retry: 3,
-  })
-
-  const { data: stocks } = useQuery({
-    queryKey: ['beneficiaryStocks'],
-    queryFn: () => fetchBeneficiaryStocks(10),
-    refetchInterval: 1000 * 60 * 5,
   })
 
   // 프론트에서 카테고리 필터링
@@ -359,48 +352,6 @@ export default function Dashboard() {
   const handleSectorClick = useCallback((sector: string) => {
     setSelectedSector(prev => prev === sector ? undefined : sector)
   }, [])
-
-  const tabBtn = (id: 'pulse' | 'stocks', label: string, count?: number) => {
-    const active = sidebarTab === id
-    return (
-      <button
-        onClick={() => setSidebarTab(id)}
-        style={{
-          flex: 1, fontFamily: 'var(--font-mono)', fontSize: 10,
-          letterSpacing: '0.08em', padding: '7px 0',
-          background: active ? 'var(--bg-primary)' : 'transparent',
-          border: 'none', borderBottom: active ? '2px solid var(--accent)' : '2px solid transparent',
-          color: active ? 'var(--text-primary)' : 'var(--text-ghost)',
-          cursor: 'pointer', transition: 'all 0.15s',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
-        }}
-      >
-        {label}
-        {count !== undefined && count > 0 && (
-          <span style={{ fontSize: 9, opacity: 0.6, background: 'var(--bg-input)', padding: '1px 5px', borderRadius: 3 }}>{count}</span>
-        )}
-      </button>
-    )
-  }
-
-  const Sidebar = () => (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)' }}>
-
-      {/* 탭 헤더 */}
-      <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', flexShrink: 0, background: 'var(--bg-input)' }}>
-        {tabBtn('pulse', 'MARKET PULSE')}
-        {tabBtn('stocks', '수혜주', stocks?.length)}
-      </div>
-
-      {/* 탭 컨텐츠 */}
-      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', overflowX: 'hidden' }} className="scrollbar-hide">
-        {sidebarTab === 'pulse'
-          ? <MarketPulse newsData={newsData} borderless />
-          : <StockPanel borderless />
-        }
-      </div>
-    </div>
-  )
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', paddingBottom: 48 }}>
@@ -475,19 +426,24 @@ export default function Dashboard() {
             </div>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 20, marginBottom: 22 }}>
-            <SystemStatus />
-            <div>
-              <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
-                // CATEGORY
-                {selectedSector && <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 220px 220px', gap: 20, marginBottom: 22 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 20 }}>
+              <SystemStatus />
+              <div>
+                <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
+                  // CATEGORY
+                  {selectedSector && <button onClick={() => setSelectedSector(undefined)} style={{ fontSize: 10, color: 'var(--text-tertiary)', background: 'none', border: '1px solid var(--border)', borderRadius: 3, padding: '1px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}>ALL ×</button>}
+                </div>
+                <KeywordCloud onKeywordClick={handleSectorClick} selectedKeyword={selectedSector} />
               </div>
-              <KeywordCloud onKeywordClick={handleSectorClick} selectedKeyword={selectedSector} />
             </div>
+            {/* 상단 우측 2칸은 빈 공간 — 뉴스 카드와 시작라인 맞춤용 */}
+            <div />
+            <div />
           </div>
         )}
 
-        <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '1fr 290px', gap: 20 }}>
+        <div style={{ display: isMobile ? 'block' : 'grid', gridTemplateColumns: '1fr 220px 220px', gap: 20 }}>
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// NEWS FEED</span>
@@ -523,18 +479,26 @@ export default function Dashboard() {
               </div>
             )}
 
-            {isMobile && <div style={{ marginTop: 20 }}><Sidebar /></div>}
+            {isMobile && (
+              <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <MarketPulse newsData={newsData} />
+                <StockPanel />
+              </div>
+            )}
           </section>
 
           {!isMobile && (
-            <aside style={{
-              position: 'sticky',
-              top: 66,
-              alignSelf: 'flex-start',
-              height: 'calc(100vh - 86px)',
-            }}>
-              <Sidebar />
-            </aside>
+            <>
+              {/* Market Pulse — 콘텐츠 높이에 맞춤 */}
+              <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+                <MarketPulse newsData={newsData} />
+              </aside>
+
+              {/* 수혜주 — 콘텐츠 높이에 맞춤 */}
+              <aside style={{ position: 'sticky', top: 66, alignSelf: 'flex-start' }}>
+                <StockPanel />
+              </aside>
+            </>
           )}
         </div>
       </div>
