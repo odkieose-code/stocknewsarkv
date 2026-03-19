@@ -214,7 +214,8 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
 }) {
   const labels = getNewsLabels(news)
   const timeAgo = (() => {
-    const diff = Date.now() - new Date(news.published_at).getTime()
+    const dateStr = news.published_at.endsWith('Z') ? news.published_at : news.published_at + 'Z'
+    const diff = Date.now() - new Date(dateStr).getTime()
     const h = Math.floor(diff / 3600000)
     const m = Math.floor((diff % 3600000) / 60000)
     return h > 0 ? `${h}시간 전` : m > 0 ? `${m}분 전` : '방금'
