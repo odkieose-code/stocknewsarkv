@@ -301,17 +301,46 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
 }
 
 // ── 메인 ─────────────────────────────────────────────────
+// ── 카테고리 키워드 매핑 (프론트 필터링) ──────────────────
+const CATEGORY_KEYWORDS: Record<string, RegExp> = {
+  '매크로':    /금리|환율|연준|Fed|FOMC|CPI|달러|국채|기준금리|한국은행|인플레|물가|GDP|경기|무역|수출|수입|관세|트럼프|미국|중국/,
+  '실적':      /실적|영업이익|매출|순이익|어닝|분기|반기|연간|흑자|적자|영업손실|EPS|ROE/,
+  '정책':      /정책|규제|법안|의회|입법|금융위|금감원|공정위|산업부|지원|보조금|세제|완화|강화/,
+  '종목':      /종목|주가|급등|급락|상한가|하한가|신고가|신저가|목표주가|매수|매도|투자의견/,
+  '수급':      /외국인|기관|개인|순매수|순매도|공매도|프로그램|ETF|펀드|수급/,
+  '섹터':      /반도체|배터리|2차전지|바이오|AI|인공지능|자동차|전기차|조선|방산|건설|엔터|게임|화학|철강|에너지|태양광/,
+  'IPO·공시':  /IPO|상장|공모|유상증자|무상증자|공시|자사주|배당|분할|합병|인수/,
+  '테마':      /테마|트렌드|주목|부각|관심|수혜|모멘텀/,
+}
+
+function classifyNews(news: NewsItem): string {
+  const text = (news.title || '') + ' ' + (news.summary || '')
+  // sector가 AI 카테고리 중 하나면 그대로 사용
+  const aiCategories = ['매크로','실적','정책','종목','수급','섹터','IPO·공시','테마']
+  if (news.sector && aiCategories.includes(news.sector)) return news.sector
+  // 키워드 매칭
+  for (const [cat, regex] of Object.entries(CATEGORY_KEYWORDS)) {
+    if (regex.test(text)) return cat
+  }
+  return '기타'
+}
+
 export default function Dashboard() {
   const [selectedSector, setSelectedSector] = useState<string>()
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
   const isMobile = useIsMobile()
 
   const { data: newsData, isLoading, isError } = useQuery({
-    queryKey: ['news', selectedSector],
-    queryFn: () => fetchNews({ sector: selectedSector, page_size: 30 }),
+    queryKey: ['news'],
+    queryFn: () => fetchNews({ page_size: 60 }),
     refetchInterval: 1000 * 60 * 2,
     retry: 3,
   })
+
+  // 프론트에서 카테고리 필터링
+  const filteredItems = selectedSector
+    ? (newsData?.items ?? []).filter(n => classifyNews(n) === selectedSector)
+    : (newsData?.items ?? [])
 
   const handleSectorClick = useCallback((sector: string) => {
     setSelectedSector(prev => prev === sector ? undefined : sector)
@@ -437,7 +466,7 @@ export default function Dashboard() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// NEWS FEED</span>
               <span style={{ fontSize: 10, color: 'var(--text-secondary)' }}>
-                {selectedSector ? `[${selectedSector}] ${newsData?.total ?? 0}건` : `TOTAL: ${newsData?.total ?? 0}`}
+                {selectedSector ? `[${selectedSector}] ${filteredItems.length}건` : `TOTAL: ${newsData?.total ?? 0}`}
               </span>
               {isError && <span style={{ fontSize: 9, color: 'var(--negative)', marginLeft: 'auto' }}>⚠ 연결 오류</span>}
             </div>
@@ -453,7 +482,7 @@ export default function Dashboard() {
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 6 : 5 }}>
-                {newsData?.items.map(news => (
+                {filteredItems.filter(news => news.title?.trim().length >= 8).map(news => (
                   <NewsCardItem
                     key={news.id}
                     news={news}
@@ -462,7 +491,7 @@ export default function Dashboard() {
                     isMobile={isMobile}
                   />
                 ))}
-                {(!newsData?.items || newsData.items.length === 0) && (
+                {filteredItems.filter(n => n.title?.trim().length >= 8).length === 0 && (
                   <div style={{ fontSize: 11, color: 'var(--text-secondary)', padding: '32px 24px', textAlign: 'center', border: '1px solid var(--border)', borderRadius: 6, fontFamily: 'var(--font-mono)' }}>NO MATCHING NEWS</div>
                 )}
               </div>

@@ -1,17 +1,16 @@
-import { useQuery } from '@tanstack/react-query'
 import { fetchSectors } from '../utils/api'
+import { useQuery } from '@tanstack/react-query'
 
-// ── 고정 카테고리 순서 & 색상 ─────────────────────────────
 const FIXED_CATEGORIES = [
-  { key: '매크로',    color: 'rgba(255,120,0,1)',   bg: 'rgba(255,120,0,0.12)',   border: 'rgba(255,120,0,0.5)' },
-  { key: '실적',     color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.12)', border: 'rgba(160,100,255,0.5)' },
-  { key: '정책',     color: 'rgba(255,190,0,1)',   bg: 'rgba(255,190,0,0.12)',   border: 'rgba(255,190,0,0.5)' },
-  { key: '종목',     color: 'rgba(0,210,100,1)',   bg: 'rgba(0,210,100,0.12)',   border: 'rgba(0,210,100,0.5)' },
-  { key: '수급',     color: 'rgba(0,190,160,1)',   bg: 'rgba(0,190,160,0.12)',   border: 'rgba(0,190,160,0.5)' },
-  { key: '섹터',     color: 'rgba(90,150,255,1)',  bg: 'rgba(90,150,255,0.12)',  border: 'rgba(90,150,255,0.5)' },
-  { key: 'IPO·공시', color: 'rgba(255,70,70,1)',   bg: 'rgba(255,70,70,0.12)',   border: 'rgba(255,70,70,0.5)' },
-  { key: '테마',     color: 'rgba(0,190,230,1)',   bg: 'rgba(0,190,230,0.12)',   border: 'rgba(0,190,230,0.5)' },
-  { key: '기타',     color: 'rgba(180,180,180,1)', bg: 'rgba(180,180,180,0.10)', border: 'rgba(180,180,180,0.4)' },
+  { key: '매크로',    color: 'rgba(255,120,0,1)',   bg: 'rgba(255,120,0,0.13)',   border: 'rgba(255,120,0,0.6)' },
+  { key: '실적',     color: 'rgba(160,100,255,1)', bg: 'rgba(160,100,255,0.13)', border: 'rgba(160,100,255,0.6)' },
+  { key: '정책',     color: 'rgba(255,190,0,1)',   bg: 'rgba(255,190,0,0.13)',   border: 'rgba(255,190,0,0.6)' },
+  { key: '종목',     color: 'rgba(0,210,100,1)',   bg: 'rgba(0,210,100,0.13)',   border: 'rgba(0,210,100,0.6)' },
+  { key: '수급',     color: 'rgba(0,190,160,1)',   bg: 'rgba(0,190,160,0.13)',   border: 'rgba(0,190,160,0.6)' },
+  { key: '섹터',     color: 'rgba(90,150,255,1)',  bg: 'rgba(90,150,255,0.13)',  border: 'rgba(90,150,255,0.6)' },
+  { key: 'IPO·공시', color: 'rgba(255,70,70,1)',   bg: 'rgba(255,70,70,0.13)',   border: 'rgba(255,70,70,0.6)' },
+  { key: '테마',     color: 'rgba(0,190,230,1)',   bg: 'rgba(0,190,230,0.13)',   border: 'rgba(0,190,230,0.6)' },
+  { key: '기타',     color: 'rgba(160,160,160,1)', bg: 'rgba(160,160,160,0.10)', border: 'rgba(160,160,160,0.5)' },
 ]
 
 interface KeywordCloudProps {
@@ -26,7 +25,6 @@ export default function KeywordCloud({ onKeywordClick, selectedKeyword }: Keywor
     refetchInterval: 1000 * 60 * 5,
   })
 
-  // 카테고리별 뉴스 카운트 맵
   const countMap: Record<string, number> = {}
   if (sectors) {
     sectors.forEach(s => {
@@ -35,17 +33,11 @@ export default function KeywordCloud({ onKeywordClick, selectedKeyword }: Keywor
     })
   }
 
-  // 필터 모드: 선택된 카테고리만 표시, 나머지 숨김
-  const visibleCategories = selectedKeyword
-    ? FIXED_CATEGORIES.filter(c => c.key === selectedKeyword)
-    : FIXED_CATEGORIES
-
   return (
     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-      {visibleCategories.map(({ key, color, bg, border }) => {
+      {FIXED_CATEGORIES.map(({ key, color, bg, border }) => {
         const isSelected = selectedKeyword === key
         const count = countMap[key] ?? 0
-        const hasNews = count > 0
 
         return (
           <button
@@ -54,45 +46,45 @@ export default function KeywordCloud({ onKeywordClick, selectedKeyword }: Keywor
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 11,
-              fontWeight: isSelected ? 700 : 500,
+              fontWeight: isSelected ? 700 : 400,
               letterSpacing: '0.06em',
               padding: '5px 12px',
-              border: `1px solid ${isSelected ? color : hasNews ? border : 'var(--border)'}`,
+              border: `1px solid ${isSelected ? color : border}`,
               borderRadius: 5,
               background: isSelected ? bg : 'transparent',
-              color: isSelected ? color : hasNews ? color : 'var(--text-ghost)',
+              color: isSelected ? color : 'var(--text-secondary)',
               cursor: 'pointer',
               transition: 'all 0.15s',
               display: 'inline-flex',
               alignItems: 'center',
               gap: 6,
+              opacity: 1,
             }}
             onMouseEnter={e => {
-              if (!isSelected && hasNews) {
+              if (!isSelected) {
                 const b = e.currentTarget as HTMLButtonElement
                 b.style.background = bg
                 b.style.borderColor = color
+                b.style.color = color
               }
             }}
             onMouseLeave={e => {
               if (!isSelected) {
                 const b = e.currentTarget as HTMLButtonElement
                 b.style.background = 'transparent'
-                b.style.borderColor = hasNews ? border : 'var(--border)'
+                b.style.borderColor = border
+                b.style.color = 'var(--text-secondary)'
               }
             }}
           >
             <span style={{
               width: 6, height: 6, borderRadius: '50%',
-              background: hasNews ? color : 'var(--text-ghost)',
+              background: color,
               display: 'inline-block', flexShrink: 0,
             }} />
             {key}
-            {hasNews && (
+            {count > 0 && (
               <span style={{ fontSize: 9, opacity: 0.55 }}>{count}</span>
-            )}
-            {isSelected && (
-              <span style={{ fontSize: 13, opacity: 0.5, marginLeft: 1 }}>×</span>
             )}
           </button>
         )
