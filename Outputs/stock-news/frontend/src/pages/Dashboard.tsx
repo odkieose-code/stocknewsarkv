@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchNews } from '../utils/api'
+import { fetchNews, fetchBeneficiaryStocks } from '../utils/api'
 import StockPanel from '../components/StockPanel'
 import KeywordCloud from '../components/KeywordCloud'
 import { useTheme } from '../App'
@@ -113,7 +113,7 @@ function LiveDot() {
 }
 
 // ── Market Pulse ──────────────────────────────────────────
-function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: number } }) {
+function MarketPulse({ newsData, borderless }: { newsData?: { items: NewsItem[]; total: number }, borderless?: boolean }) {
   const cnt = { positive: 0, neutral: 0, negative: 0 }
   newsData?.items.forEach(n => {
     if (n.sentiment === 'positive') cnt.positive++
@@ -130,7 +130,7 @@ function MarketPulse({ newsData }: { newsData?: { items: NewsItem[]; total: numb
     .slice(0, 3) ?? []
 
   return (
-    <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', fontFamily: 'var(--font-mono)', background: 'var(--bg-card)' }}>
+    <div style={{ border: borderless ? 'none' : '1px solid var(--border)', borderRadius: borderless ? 0 : 8, overflow: 'hidden', fontFamily: 'var(--font-mono)', background: 'transparent' }}>
       <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// MARKET PULSE</div>
       <div style={{ padding: 14 }}>
         <div style={{ marginBottom: 14 }}>
@@ -335,6 +335,7 @@ function classifyNews(news: NewsItem): string {
 export default function Dashboard() {
   const [selectedSector, setSelectedSector] = useState<string>()
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
+  const [sidebarTab, setSidebarTab] = useState<'pulse' | 'stocks'>('pulse')
   const isMobile = useIsMobile()
 
   const { data: newsData, isLoading, isError } = useQuery({
@@ -342,6 +343,12 @@ export default function Dashboard() {
     queryFn: () => fetchNews({ page_size: 60 }),
     refetchInterval: 1000 * 60 * 2,
     retry: 3,
+  })
+
+  const { data: stocks } = useQuery({
+    queryKey: ['beneficiaryStocks'],
+    queryFn: () => fetchBeneficiaryStocks(10),
+    refetchInterval: 1000 * 60 * 5,
   })
 
   // 프론트에서 카테고리 필터링
@@ -353,15 +360,44 @@ export default function Dashboard() {
     setSelectedSector(prev => prev === sector ? undefined : sector)
   }, [])
 
+  const tabBtn = (id: 'pulse' | 'stocks', label: string, count?: number) => {
+    const active = sidebarTab === id
+    return (
+      <button
+        onClick={() => setSidebarTab(id)}
+        style={{
+          flex: 1, fontFamily: 'var(--font-mono)', fontSize: 10,
+          letterSpacing: '0.08em', padding: '7px 0',
+          background: active ? 'var(--bg-primary)' : 'transparent',
+          border: 'none', borderBottom: active ? '2px solid var(--accent)' : '2px solid transparent',
+          color: active ? 'var(--text-primary)' : 'var(--text-ghost)',
+          cursor: 'pointer', transition: 'all 0.15s',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
+        }}
+      >
+        {label}
+        {count !== undefined && count > 0 && (
+          <span style={{ fontSize: 9, opacity: 0.6, background: 'var(--bg-input)', padding: '1px 5px', borderRadius: 3 }}>{count}</span>
+        )}
+      </button>
+    )
+  }
+
   const Sidebar = () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, height: '100%' }}>
-      {/* Market Pulse: 항상 상단 고정 */}
-      <div style={{ flexShrink: 0 }}>
-        <MarketPulse newsData={newsData} />
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)' }}>
+
+      {/* 탭 헤더 */}
+      <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', flexShrink: 0, background: 'var(--bg-input)' }}>
+        {tabBtn('pulse', 'MARKET PULSE')}
+        {tabBtn('stocks', '수혜주', stocks?.length)}
       </div>
-      {/* StockPanel: 남은 공간 채우며 내부 스크롤 */}
-      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-        <StockPanel />
+
+      {/* 탭 컨텐츠 */}
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', overflowX: 'hidden' }} className="scrollbar-hide">
+        {sidebarTab === 'pulse'
+          ? <MarketPulse newsData={newsData} borderless />
+          : <StockPanel borderless />
+        }
       </div>
     </div>
   )
@@ -496,9 +532,6 @@ export default function Dashboard() {
               top: 66,
               alignSelf: 'flex-start',
               height: 'calc(100vh - 86px)',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'hidden',
             }}>
               <Sidebar />
             </aside>

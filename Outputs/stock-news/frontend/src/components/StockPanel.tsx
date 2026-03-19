@@ -27,7 +27,7 @@ function getGrade(stock: BeneficiaryStock): {
   }
 }
 
-export default function StockPanel() {
+export default function StockPanel({ borderless }: { borderless?: boolean } = {}) {
   const { data: stocks, isLoading, isError } = useQuery({
     queryKey: ['beneficiaryStocks'],
     queryFn: () => fetchBeneficiaryStocks(10),
@@ -36,12 +36,12 @@ export default function StockPanel() {
   })
 
   return (
-    <div style={{ border: '1px solid var(--border)', borderRadius: 8, background: 'var(--bg-card)', fontFamily: 'var(--font-mono)', display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1, overflow: 'hidden' }}>
+    <div style={{ border: borderless ? 'none' : '1px solid var(--border)', borderRadius: borderless ? 0 : 8, background: 'transparent', fontFamily: 'var(--font-mono)', display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1, overflow: 'hidden' }}>
 
       {/* 헤더 */}
       <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// 오늘의 수혜주</span>
+          <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// BENEFICIARY STOCKS</span>
           <span style={{ fontSize: 9, color: 'var(--text-ghost)' }}>뉴스 언급 기반</span>
         </div>
         {stocks && stocks.length > 0 && (
