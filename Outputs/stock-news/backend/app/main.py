@@ -215,17 +215,28 @@ TICKER_SYMBOLS_MAP = {
     "S&P500":  "^GSPC",
     "NASDAQ":  "^IXIC",
     "WTI":     "CL=F",
-    "BTC/USD": "BTC-USD",
 }
 
 @app.get("/api/ticker")
 async def get_ticker():
     results = []
-    headers = {"User-Agent": "Mozilla/5.0"}
-    async with httpx.AsyncClient(timeout=8.0) as client:
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept": "application/json",
+        "Referer": "https://finance.yahoo.com/",
+    }
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        try:
+            r = await client.get("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT")
+            d = r.json()
+            price = float(d["lastPrice"])
+            chg = float(d["priceChangePercent"])
+            results.append({"label": "BTC/USD", "value": f"{price:,.0f}", "change": f"{chg:+.2f}%", "up": chg >= 0})
+        except Exception:
+            results.append({"label": "BTC/USD", "value": "--", "change": "", "up": None})
         for label, symbol in TICKER_SYMBOLS_MAP.items():
             try:
-                url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=2d"
+                url = f"https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=2d"
                 r = await client.get(url, headers=headers)
                 data = r.json()
                 meta = data["chart"]["result"][0]["meta"]
@@ -234,19 +245,13 @@ async def get_ticker():
                 chg   = ((price - prev) / prev * 100) if price and prev else None
                 if label == "USD/KRW":
                     value = f"{price:.1f}" if price else "--"
-                elif "BTC" in label:
-                    value = f"{price:,.0f}" if price else "--"
                 else:
-                    value = f"{price:.2f}" if price else "--"
-                results.append({
-                    "label": label,
-                    "value": value,
-                    "change": f"{chg:+.2f}%" if chg is not None else "",
-                    "up": (chg >= 0) if chg is not None else None,
-                })
+                    value = f"{price:,.2f}" if price else "--"
+                results.append({"label": label, "value": value, "change": f"{chg:+.2f}%" if chg is not None else "", "up": (chg >= 0) if chg is not None else None})
             except Exception:
                 results.append({"label": label, "value": "--", "change": "", "up": None})
     return results
+
 
 
 @app.get("/health")
@@ -258,33 +263,49 @@ async def health_check():
 import httpx
 
 TICKER_SYMBOLS_MAP = {
-    "KOSPI": "^KS11", "KOSDAQ": "^KQ11", "USD/KRW": "KRW=X",
-    "S&P500": "^GSPC", "NASDAQ": "^IXIC", "WTI": "CL=F", "BTC/USD": "BTC-USD",
+    "KOSPI":   "^KS11",
+    "KOSDAQ":  "^KQ11",
+    "USD/KRW": "KRW=X",
+    "S&P500":  "^GSPC",
+    "NASDAQ":  "^IXIC",
+    "WTI":     "CL=F",
 }
 
 @app.get("/api/ticker")
 async def get_ticker():
     results = []
-    headers = {"User-Agent": "Mozilla/5.0"}
-    async with httpx.AsyncClient(timeout=8.0) as client:
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept": "application/json",
+        "Referer": "https://finance.yahoo.com/",
+    }
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        try:
+            r = await client.get("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT")
+            d = r.json()
+            price = float(d["lastPrice"])
+            chg = float(d["priceChangePercent"])
+            results.append({"label": "BTC/USD", "value": f"{price:,.0f}", "change": f"{chg:+.2f}%", "up": chg >= 0})
+        except Exception:
+            results.append({"label": "BTC/USD", "value": "--", "change": "", "up": None})
         for label, symbol in TICKER_SYMBOLS_MAP.items():
             try:
-                url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=2d"
+                url = f"https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=2d"
                 r = await client.get(url, headers=headers)
                 data = r.json()
                 meta = data["chart"]["result"][0]["meta"]
                 price = meta.get("regularMarketPrice") or meta.get("previousClose")
-                prev = meta.get("chartPreviousClose") or meta.get("previousClose")
-                chg = ((price - prev) / prev * 100) if price and prev else None
-                if label == "USD/KRW": value = f"{price:.1f}" if price else "--"
-                elif "BTC" in label: value = f"{price:,.0f}" if price else "--"
-                else: value = f"{price:.2f}" if price else "--"
-                results.append({"label": label, "value": value,
-                    "change": f"{chg:+.2f}%" if chg is not None else "",
-                    "up": (chg >= 0) if chg is not None else None})
+                prev  = meta.get("chartPreviousClose") or meta.get("previousClose")
+                chg   = ((price - prev) / prev * 100) if price and prev else None
+                if label == "USD/KRW":
+                    value = f"{price:.1f}" if price else "--"
+                else:
+                    value = f"{price:,.2f}" if price else "--"
+                results.append({"label": label, "value": value, "change": f"{chg:+.2f}%" if chg is not None else "", "up": (chg >= 0) if chg is not None else None})
             except Exception:
                 results.append({"label": label, "value": "--", "change": "", "up": None})
     return results
+
 
 
 @app.get("/api/stocks/beneficiary")
