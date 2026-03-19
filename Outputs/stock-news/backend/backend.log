@@ -3088,3 +3088,1434 @@ WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate =
 2026-03-19 08:30:56,455 INFO sqlalchemy.engine.Engine [cached since 8055s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 30, 36, 340982), datetime.datetime(2026, 3, 18, 23, 30, 56, 455280), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652466&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 30, 37, 393691), datetime.datetime(2026, 3, 18, 23, 30, 56, 455284), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736581&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 30, 38, 440692), datetime.datetime(2026, 3, 18, 23, 30, 56, 455284), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 30, 54, 224433), datetime.datetime(2026, 3, 18, 23, 30, 56, 455292), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238276&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 30, 55, 272805), datetime.datetime(2026, 3, 18, 23, 30, 56, 455292), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238272&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 30, 56, 338813), datetime.datetime(2026, 3, 18, 23, 30, 56, 455293), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
 2026-03-19 08:30:56,464 INFO sqlalchemy.engine.Engine COMMIT
 >>> DB 저장 완료: 20개
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 08:40:56,515 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 08:40:56,518 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 08:40:56,519 INFO sqlalchemy.engine.Engine [cached since 1.526e+04s ago] (datetime.datetime(2026, 3, 17, 23, 40, 56, 509582),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 08:40:56,643 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 08:40:56,643 INFO sqlalchemy.engine.Engine [cached since 8655s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 36, 382345), datetime.datetime(2026, 3, 18, 23, 40, 56, 643032), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 37, 506927), datetime.datetime(2026, 3, 18, 23, 40, 56, 643037), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 38, 555873), datetime.datetime(2026, 3, 18, 23, 40, 56, 643037), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 40, 54, 382864), datetime.datetime(2026, 3, 18, 23, 40, 56, 643044), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736561&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 55, 434650), datetime.datetime(2026, 3, 18, 23, 40, 56, 643045), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238277&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 56, 504643), datetime.datetime(2026, 3, 18, 23, 40, 56, 643045), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 08:40:56,652 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 36, 382345), datetime.datetime(2026, 3, 18, 23, 40, 56, 643032), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 37, 506927), datetime.datetime(2026, 3, 18, 23, 40, 56, 643037), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 38, 555873), datetime.datetime(2026, 3, 18, 23, 40, 56, 643037), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 40, 54, 382864), datetime.datetime(2026, 3, 18, 23, 40, 56, 643044), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736561&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 55, 434650), datetime.datetime(2026, 3, 18, 23, 40, 56, 643045), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238277&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 56, 504643), datetime.datetime(2026, 3, 18, 23, 40, 56, 643045), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 36, 382345), datetime.datetime(2026, 3, 18, 23, 40, 56, 643032), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 37, 506927), datetime.datetime(2026, 3, 18, 23, 40, 56, 643037), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 38, 555873), datetime.datetime(2026, 3, 18, 23, 40, 56, 643037), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 40, 54, 382864), datetime.datetime(2026, 3, 18, 23, 40, 56, 643044), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736561&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 55, 434650), datetime.datetime(2026, 3, 18, 23, 40, 56, 643045), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238277&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 40, 56, 504643), datetime.datetime(2026, 3, 18, 23, 40, 56, 643045), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 08:50:56,405 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 08:50:56,413 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 08:50:56,413 INFO sqlalchemy.engine.Engine [cached since 1.586e+04s ago] (datetime.datetime(2026, 3, 17, 23, 50, 56, 400564),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 08:50:56,518 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 08:50:56,518 INFO sqlalchemy.engine.Engine [cached since 9255s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 36, 376567), datetime.datetime(2026, 3, 18, 23, 50, 56, 517626), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 37, 425861), datetime.datetime(2026, 3, 18, 23, 50, 56, 517630), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 38, 475887), datetime.datetime(2026, 3, 18, 23, 50, 56, 517631), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 50, 54, 286182), datetime.datetime(2026, 3, 18, 23, 50, 56, 517638), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238281&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 55, 331666), datetime.datetime(2026, 3, 18, 23, 50, 56, 517638), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736561&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 56, 399243), datetime.datetime(2026, 3, 18, 23, 50, 56, 517639), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 08:50:56,528 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 36, 376567), datetime.datetime(2026, 3, 18, 23, 50, 56, 517626), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 37, 425861), datetime.datetime(2026, 3, 18, 23, 50, 56, 517630), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 38, 475887), datetime.datetime(2026, 3, 18, 23, 50, 56, 517631), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 50, 54, 286182), datetime.datetime(2026, 3, 18, 23, 50, 56, 517638), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238281&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 55, 331666), datetime.datetime(2026, 3, 18, 23, 50, 56, 517638), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736561&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 56, 399243), datetime.datetime(2026, 3, 18, 23, 50, 56, 517639), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 36, 376567), datetime.datetime(2026, 3, 18, 23, 50, 56, 517626), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 37, 425861), datetime.datetime(2026, 3, 18, 23, 50, 56, 517630), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 38, 475887), datetime.datetime(2026, 3, 18, 23, 50, 56, 517631), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 8, 50, 54, 286182), datetime.datetime(2026, 3, 18, 23, 50, 56, 517638), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238281&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 55, 331666), datetime.datetime(2026, 3, 18, 23, 50, 56, 517638), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005736561&office_id=277&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 8, 50, 56, 399243), datetime.datetime(2026, 3, 18, 23, 50, 56, 517639), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 09:00:56,124 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 09:00:56,133 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 09:00:56,136 INFO sqlalchemy.engine.Engine [cached since 1.646e+04s ago] (datetime.datetime(2026, 3, 18, 0, 0, 56, 121610),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 09:00:56,233 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 09:00:56,233 INFO sqlalchemy.engine.Engine [cached since 9854s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 36, 331252), datetime.datetime(2026, 3, 19, 0, 0, 56, 233379), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 37, 367129), datetime.datetime(2026, 3, 19, 0, 0, 56, 233384), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 38, 428096), datetime.datetime(2026, 3, 19, 0, 0, 56, 233385), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 0, 54, 32624), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 55, 72657), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238281&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 56, 112317), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 09:00:56,242 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 36, 331252), datetime.datetime(2026, 3, 19, 0, 0, 56, 233379), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 37, 367129), datetime.datetime(2026, 3, 19, 0, 0, 56, 233384), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 38, 428096), datetime.datetime(2026, 3, 19, 0, 0, 56, 233385), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 0, 54, 32624), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 55, 72657), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238281&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 56, 112317), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 36, 331252), datetime.datetime(2026, 3, 19, 0, 0, 56, 233379), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 37, 367129), datetime.datetime(2026, 3, 19, 0, 0, 56, 233384), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 38, 428096), datetime.datetime(2026, 3, 19, 0, 0, 56, 233385), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 0, 54, 32624), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 55, 72657), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238281&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 0, 56, 112317), datetime.datetime(2026, 3, 19, 0, 0, 56, 233393), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 09:10:56,392 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 09:10:56,402 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 09:10:56,402 INFO sqlalchemy.engine.Engine [cached since 1.706e+04s ago] (datetime.datetime(2026, 3, 18, 0, 10, 56, 388207),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 09:10:56,498 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 09:10:56,498 INFO sqlalchemy.engine.Engine [cached since 1.045e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 36, 367235), datetime.datetime(2026, 3, 19, 0, 10, 56, 498182), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 37, 413457), datetime.datetime(2026, 3, 19, 0, 10, 56, 498186), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 38, 468218), datetime.datetime(2026, 3, 19, 0, 10, 56, 498187), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 10, 54, 281170), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238284&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 55, 329572), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 56, 385107), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 09:10:56,507 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 36, 367235), datetime.datetime(2026, 3, 19, 0, 10, 56, 498182), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 37, 413457), datetime.datetime(2026, 3, 19, 0, 10, 56, 498186), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 38, 468218), datetime.datetime(2026, 3, 19, 0, 10, 56, 498187), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 10, 54, 281170), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238284&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 55, 329572), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 56, 385107), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 36, 367235), datetime.datetime(2026, 3, 19, 0, 10, 56, 498182), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 37, 413457), datetime.datetime(2026, 3, 19, 0, 10, 56, 498186), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 38, 468218), datetime.datetime(2026, 3, 19, 0, 10, 56, 498187), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 10, 54, 281170), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238284&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 55, 329572), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 10, 56, 385107), datetime.datetime(2026, 3, 19, 0, 10, 56, 498194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 09:20:56,350 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 09:20:56,364 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 09:20:56,364 INFO sqlalchemy.engine.Engine [cached since 1.766e+04s ago] (datetime.datetime(2026, 3, 18, 0, 20, 56, 347299),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 09:20:56,460 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 09:20:56,460 INFO sqlalchemy.engine.Engine [cached since 1.105e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 36, 362186), datetime.datetime(2026, 3, 19, 0, 20, 56, 460078), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 37, 410403), datetime.datetime(2026, 3, 19, 0, 20, 56, 460082), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 38, 474814), datetime.datetime(2026, 3, 19, 0, 20, 56, 460083), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 20, 54, 247667), datetime.datetime(2026, 3, 19, 0, 20, 56, 460090), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238284&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 55, 299809), datetime.datetime(2026, 3, 19, 0, 20, 56, 460091), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 56, 345456), datetime.datetime(2026, 3, 19, 0, 20, 56, 460091), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 09:20:56,469 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 36, 362186), datetime.datetime(2026, 3, 19, 0, 20, 56, 460078), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 37, 410403), datetime.datetime(2026, 3, 19, 0, 20, 56, 460082), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 38, 474814), datetime.datetime(2026, 3, 19, 0, 20, 56, 460083), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 20, 54, 247667), datetime.datetime(2026, 3, 19, 0, 20, 56, 460090), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238284&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 55, 299809), datetime.datetime(2026, 3, 19, 0, 20, 56, 460091), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 56, 345456), datetime.datetime(2026, 3, 19, 0, 20, 56, 460091), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 36, 362186), datetime.datetime(2026, 3, 19, 0, 20, 56, 460078), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149672&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 37, 410403), datetime.datetime(2026, 3, 19, 0, 20, 56, 460082), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264122&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 38, 474814), datetime.datetime(2026, 3, 19, 0, 20, 56, 460083), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 20, 54, 247667), datetime.datetime(2026, 3, 19, 0, 20, 56, 460090), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238284&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 55, 299809), datetime.datetime(2026, 3, 19, 0, 20, 56, 460091), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264098&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 20, 56, 345456), datetime.datetime(2026, 3, 19, 0, 20, 56, 460091), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 09:30:57,002 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 09:30:57,019 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 09:30:57,020 INFO sqlalchemy.engine.Engine [cached since 1.826e+04s ago] (datetime.datetime(2026, 3, 18, 0, 30, 56, 991728),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 09:30:57,219 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 09:30:57,220 INFO sqlalchemy.engine.Engine [cached since 1.166e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005493906&office_id=014&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 36, 544498), datetime.datetime(2026, 3, 19, 0, 30, 57, 218134), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601023&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 37, 623664), datetime.datetime(2026, 3, 19, 0, 30, 57, 218143), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238393&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 38, 681494), datetime.datetime(2026, 3, 19, 0, 30, 57, 218144), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 30, 54, 895820), datetime.datetime(2026, 3, 19, 0, 30, 57, 218217), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134836&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 55, 940970), datetime.datetime(2026, 3, 19, 0, 30, 57, 218218), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149664&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 56, 987189), datetime.datetime(2026, 3, 19, 0, 30, 57, 218218), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 09:30:57,323 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005493906&office_id=014&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 36, 544498), datetime.datetime(2026, 3, 19, 0, 30, 57, 218134), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601023&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 37, 623664), datetime.datetime(2026, 3, 19, 0, 30, 57, 218143), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238393&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 38, 681494), datetime.datetime(2026, 3, 19, 0, 30, 57, 218144), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 30, 54, 895820), datetime.datetime(2026, 3, 19, 0, 30, 57, 218217), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134836&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 55, 940970), datetime.datetime(2026, 3, 19, 0, 30, 57, 218218), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149664&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 56, 987189), datetime.datetime(2026, 3, 19, 0, 30, 57, 218218), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005493906&office_id=014&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 36, 544498), datetime.datetime(2026, 3, 19, 0, 30, 57, 218134), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601023&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 37, 623664), datetime.datetime(2026, 3, 19, 0, 30, 57, 218143), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238393&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 38, 681494), datetime.datetime(2026, 3, 19, 0, 30, 57, 218144), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 30, 54, 895820), datetime.datetime(2026, 3, 19, 0, 30, 57, 218217), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134836&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 55, 940970), datetime.datetime(2026, 3, 19, 0, 30, 57, 218218), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001149664&office_id=366&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 30, 56, 987189), datetime.datetime(2026, 3, 19, 0, 30, 57, 218218), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 09:40:56,801 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 09:40:56,803 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 09:40:56,803 INFO sqlalchemy.engine.Engine [cached since 1.886e+04s ago] (datetime.datetime(2026, 3, 18, 0, 40, 56, 796073),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 09:40:56,946 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 09:40:56,946 INFO sqlalchemy.engine.Engine [cached since 1.226e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0002778276&office_id=021&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 36, 861375), datetime.datetime(2026, 3, 19, 0, 40, 56, 945144), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0000171435&office_id=654&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 37, 913342), datetime.datetime(2026, 3, 19, 0, 40, 56, 945184), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005493906&office_id=014&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 38, 963079), datetime.datetime(2026, 3, 19, 0, 40, 56, 945186), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 40, 54, 692492), datetime.datetime(2026, 3, 19, 0, 40, 56, 945193), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245765&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 55, 740833), datetime.datetime(2026, 3, 19, 0, 40, 56, 945194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238297&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 56, 793254), datetime.datetime(2026, 3, 19, 0, 40, 56, 945194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 09:40:56,963 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0002778276&office_id=021&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 36, 861375), datetime.datetime(2026, 3, 19, 0, 40, 56, 945144), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0000171435&office_id=654&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 37, 913342), datetime.datetime(2026, 3, 19, 0, 40, 56, 945184), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005493906&office_id=014&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 38, 963079), datetime.datetime(2026, 3, 19, 0, 40, 56, 945186), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 40, 54, 692492), datetime.datetime(2026, 3, 19, 0, 40, 56, 945193), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245765&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 55, 740833), datetime.datetime(2026, 3, 19, 0, 40, 56, 945194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238297&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 56, 793254), datetime.datetime(2026, 3, 19, 0, 40, 56, 945194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0006238306&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0002778276&office_id=021&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 36, 861375), datetime.datetime(2026, 3, 19, 0, 40, 56, 945144), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0000171435&office_id=654&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 37, 913342), datetime.datetime(2026, 3, 19, 0, 40, 56, 945184), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005493906&office_id=014&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 38, 963079), datetime.datetime(2026, 3, 19, 0, 40, 56, 945186), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 40, 54, 692492), datetime.datetime(2026, 3, 19, 0, 40, 56, 945193), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245765&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 55, 740833), datetime.datetime(2026, 3, 19, 0, 40, 56, 945194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238297&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 40, 56, 793254), datetime.datetime(2026, 3, 19, 0, 40, 56, 945194), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 09:50:56,661 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 09:50:56,672 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 09:50:56,673 INFO sqlalchemy.engine.Engine [cached since 1.946e+04s ago] (datetime.datetime(2026, 3, 18, 0, 50, 56, 651091),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 09:50:56,789 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 09:50:56,789 INFO sqlalchemy.engine.Engine [cached since 1.286e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 50, 36, 391652), datetime.datetime(2026, 3, 19, 0, 50, 56, 788281), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0006238428&office_id=018&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 50, 37, 433263), datetime.datetime(2026, 3, 19, 0, 50, 56, 788288), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652513&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 50, 38, 478869), datetime.datetime(2026, 3, 19, 0, 50, 56, 788289), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 9, 50, 54, 553010), datetime.datetime(2026, 3, 19, 0, 50, 56, 788297), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332036&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 50, 55, 600802), datetime.datetime(2026, 3, 19, 0, 50, 56, 788297), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0003016762&office_id=029&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 9, 50, 56, 648146), datetime.datetime(2026, 3, 19, 0, 50, 56, 788297), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 09:50:56,802 INFO sqlalchemy.engine.Engine COMMIT
+>>> DB 저장 완료: 20개
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 10:00:56,250 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 10:00:56,251 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 10:00:56,252 INFO sqlalchemy.engine.Engine [cached since 2.006e+04s ago] (datetime.datetime(2026, 3, 18, 1, 0, 56, 238747),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 10:00:56,363 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 10:00:56,364 INFO sqlalchemy.engine.Engine [cached since 1.345e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831691&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 36, 263966), datetime.datetime(2026, 3, 19, 1, 0, 56, 363351), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134868&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 37, 316284), datetime.datetime(2026, 3, 19, 1, 0, 56, 363356), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652531&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 38, 364964), datetime.datetime(2026, 3, 19, 1, 0, 56, 363357), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 0, 54, 134152), datetime.datetime(2026, 3, 19, 1, 0, 56, 363364), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245772&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 55, 188516), datetime.datetime(2026, 3, 19, 1, 0, 56, 363364), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 56, 235037), datetime.datetime(2026, 3, 19, 1, 0, 56, 363365), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 10:00:56,373 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831691&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 36, 263966), datetime.datetime(2026, 3, 19, 1, 0, 56, 363351), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134868&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 37, 316284), datetime.datetime(2026, 3, 19, 1, 0, 56, 363356), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652531&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 38, 364964), datetime.datetime(2026, 3, 19, 1, 0, 56, 363357), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 0, 54, 134152), datetime.datetime(2026, 3, 19, 1, 0, 56, 363364), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245772&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 55, 188516), datetime.datetime(2026, 3, 19, 1, 0, 56, 363364), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 56, 235037), datetime.datetime(2026, 3, 19, 1, 0, 56, 363365), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831691&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 36, 263966), datetime.datetime(2026, 3, 19, 1, 0, 56, 363351), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134868&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 37, 316284), datetime.datetime(2026, 3, 19, 1, 0, 56, 363356), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652531&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 38, 364964), datetime.datetime(2026, 3, 19, 1, 0, 56, 363357), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 0, 54, 134152), datetime.datetime(2026, 3, 19, 1, 0, 56, 363364), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245772&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 55, 188516), datetime.datetime(2026, 3, 19, 1, 0, 56, 363364), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601010&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 0, 56, 235037), datetime.datetime(2026, 3, 19, 1, 0, 56, 363365), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 10:10:56,324 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 10:10:56,336 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 10:10:56,336 INFO sqlalchemy.engine.Engine [cached since 2.066e+04s ago] (datetime.datetime(2026, 3, 18, 1, 10, 56, 317473),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 10:10:56,486 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 10:10:56,486 INFO sqlalchemy.engine.Engine [cached since 1.405e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831717&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 36, 366572), datetime.datetime(2026, 3, 19, 1, 10, 56, 485818), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831691&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 37, 418224), datetime.datetime(2026, 3, 19, 1, 10, 56, 485824), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134868&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 38, 464384), datetime.datetime(2026, 3, 19, 1, 10, 56, 485825), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 10, 54, 222474), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264178&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 55, 270150), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245772&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 56, 315436), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 10:10:56,495 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831717&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 36, 366572), datetime.datetime(2026, 3, 19, 1, 10, 56, 485818), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831691&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 37, 418224), datetime.datetime(2026, 3, 19, 1, 10, 56, 485824), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134868&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 38, 464384), datetime.datetime(2026, 3, 19, 1, 10, 56, 485825), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 10, 54, 222474), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264178&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 55, 270150), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245772&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 56, 315436), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831717&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 36, 366572), datetime.datetime(2026, 3, 19, 1, 10, 56, 485818), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0013831691&office_id=003&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 37, 418224), datetime.datetime(2026, 3, 19, 1, 10, 56, 485824), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134868&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 38, 464384), datetime.datetime(2026, 3, 19, 1, 10, 56, 485825), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 10, 54, 222474), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005264178&office_id=015&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 55, 270150), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001245772&office_id=215&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 10, 56, 315436), datetime.datetime(2026, 3, 19, 1, 10, 56, 485832), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+>>> 크롤링 시작...
+>>> 크롤링 완료: 20개
+2026-03-19 10:20:56,212 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-19 10:20:56,230 INFO sqlalchemy.engine.Engine SELECT news.id, news.title, news.content 
+FROM news 
+WHERE news.crawled_at >= $1::TIMESTAMP WITHOUT TIME ZONE AND news.is_duplicate = false
+2026-03-19 10:20:56,230 INFO sqlalchemy.engine.Engine [cached since 2.126e+04s ago] (datetime.datetime(2026, 3, 18, 1, 20, 56, 207510),)
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+>>> AI 스킵: analyze() got an unexpected keyword argument 'source'
+2026-03-19 10:20:56,343 INFO sqlalchemy.engine.Engine INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1
+2026-03-19 10:20:56,344 INFO sqlalchemy.engine.Engine [cached since 1.465e+04s ago (insertmanyvalues) 1/1 (ordered)] ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0002616089&office_id=016&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 36, 270566), datetime.datetime(2026, 3, 19, 1, 20, 56, 343354), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601072&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 37, 327365), datetime.datetime(2026, 3, 19, 1, 20, 56, 343359), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652547&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 38, 373472), datetime.datetime(2026, 3, 19, 1, 20, 56, 343360), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 20, 54, 97289), datetime.datetime(2026, 3, 19, 1, 20, 56, 343368), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134862&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 55, 150255), datetime.datetime(2026, 3, 19, 1, 20, 56, 343369), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332075&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 56, 205699), datetime.datetime(2026, 3, 19, 1, 20, 56, 343369), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)
+2026-03-19 10:20:56,358 INFO sqlalchemy.engine.Engine ROLLBACK
+>>> 크롤링 오류: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0002616089&office_id=016&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 36, 270566), datetime.datetime(2026, 3, 19, 1, 20, 56, 343354), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601072&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 37, 327365), datetime.datetime(2026, 3, 19, 1, 20, 56, 343359), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652547&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 38, 373472), datetime.datetime(2026, 3, 19, 1, 20, 56, 343360), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 20, 54, 97289), datetime.datetime(2026, 3, 19, 1, 20, 56, 343368), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134862&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 55, 150255), datetime.datetime(2026, 3, 19, 1, 20, 56, 343369), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332075&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 56, 205699), datetime.datetime(2026, 3, 19, 1, 20, 56, 343369), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/app/main.py", line 109, in run_crawl
+    await db.commit()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/ext/asyncio/session.py", line 1000, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1311, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1286, in _prepare_impl
+    self.session.flush()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2133, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2125, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/myeongsujin/uigen/Outputs/stock-news/backend/.venv/lib/python3.9/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "news_url_key"
+DETAIL:  Key (url)=(https://finance.naver.com/news/news_read.naver?article_id=0005652522&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1) already exists.
+[SQL: INSERT INTO news (title, content, url, source, published_at, crawled_at, is_duplicate, original_news_id, similarity_score, importance_score, sentiment, sentiment_score, sector, thumbnail, summary, beneficiary_stocks, affected_stocks, is_analyzed) SEL ... 6308 characters truncated ...  p12, p13, p14, p15, p16, p17, sen_counter) ORDER BY sen_counter RETURNING news.id, news.id AS id__1]
+[parameters: ('', '', 'https://finance.naver.com/news/news_read.naver?article_id=0002616089&office_id=016&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 36, 270566), datetime.datetime(2026, 3, 19, 1, 20, 56, 343354), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0004601072&office_id=011&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 37, 327365), datetime.datetime(2026, 3, 19, 1, 20, 56, 343359), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005652547&office_id=009&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 38, 373472), datetime.datetime(2026, 3, 19, 1, 20, 56, 343360), False, None, None, 50.0, 'neutral', None, None, None ... 260 parameters truncated ... datetime.datetime(2026, 3, 19, 10, 20, 54, 97289), datetime.datetime(2026, 3, 19, 1, 20, 56, 343368), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0001134862&office_id=417&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 55, 150255), datetime.datetime(2026, 3, 19, 1, 20, 56, 343369), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False, '', '', 'https://finance.naver.com/news/news_read.naver?article_id=0005332075&office_id=008&mode=mainnews&type=&date=2026-03-19&page=1', '네이버증권', datetime.datetime(2026, 3, 19, 10, 20, 56, 205699), datetime.datetime(2026, 3, 19, 1, 20, 56, 343369), False, None, None, 50.0, 'neutral', None, None, None, None, '[]', '[]', False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
