@@ -166,8 +166,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(router)
-from app.api.admin import router as admin_router
-app.include_router(admin_router)
+
+
+# ── Admin 엔드포인트 (app/api/admin.py 없이 직접 정의) ────
+@app.get("/admin/clear-news")
+async def clear_news():
+    async with AsyncSessionLocal() as db:
+        await db.execute(delete(News))
+        await db.commit()
+    return {"status": "뉴스 전체 삭제 완료"}
+
+
+@app.get("/admin/crawl-now")
+async def crawl_now():
+    import asyncio
+    asyncio.create_task(run_crawl())
+    return {"status": "크롤링 시작됨"}
+
+
+@app.get("/admin/clear-empty-titles")
+async def clear_empty_titles():
+    """제목이 비어있거나 8자 미만인 뉴스를 DB에서 삭제"""
+    async with AsyncSessionLocal() as db:
+        all_news = await db.execute(select(News.id, News.title))
+        to_delete = [r.id for r in all_news.all() if not r.title or len(r.title.strip()) < 8]
+        if to_delete:
+            await db.execute(delete(News).where(News.id.in_(to_delete)))
+            await db.commit()
+            return {"status": f"빈 제목 뉴스 {len(to_delete)}건 삭제 완료"}
+    return {"status": "삭제할 뉴스 없음"}
 
 
 @app.get("/api/timeline")
@@ -212,25 +239,6 @@ async def trigger_batch_dedup(hours: int = Query(24)):
     import asyncio
     asyncio.create_task(run_batch_dedup(hours))
     return {"status": f"배치 중복 정리 시작 (최근 {hours}시간)"}
-
-
-@app.get("/admin/clear-empty-titles")
-async def clear_empty_titles():
-    """제목이 비어있거나 8자 미만인 뉴스를 DB에서 삭제"""
-    async with AsyncSessionLocal() as db:
-        result = await db.execute(
-            select(News.id, News.title).where(
-                or_(News.title == None, News.title == "", News.title.like(" %"))
-            )
-        )
-        # 8자 미만 title도 파이썬에서 필터링
-        all_news = await db.execute(select(News.id, News.title))
-        to_delete = [r.id for r in all_news.all() if not r.title or len(r.title.strip()) < 8]
-
-        if to_delete:
-            await db.execute(delete(News).where(News.id.in_(to_delete)))
-            await db.commit()
-            return {"status": f"빈 제목 뉴스 {len(to_delete)}건 삭제 완료"}
         return {"status": "삭제할 뉴스 없음"}
 
 
