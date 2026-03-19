@@ -354,9 +354,15 @@ export default function Dashboard() {
   }, [])
 
   const Sidebar = () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <MarketPulse newsData={newsData} />
-      <StockPanel />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, height: '100%' }}>
+      {/* Market Pulse: 항상 상단 고정 */}
+      <div style={{ flexShrink: 0 }}>
+        <MarketPulse newsData={newsData} />
+      </div>
+      {/* StockPanel: 남은 공간 채우며 내부 스크롤 */}
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+        <StockPanel />
+      </div>
     </div>
   )
 
@@ -489,14 +495,11 @@ export default function Dashboard() {
               position: 'sticky',
               top: 66,
               alignSelf: 'flex-start',
-              maxHeight: 'calc(100vh - 86px)',
-              overflowY: 'auto',
-              overflowX: 'hidden',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-            }}
-              className="scrollbar-hide"
-            >
+              height: 'calc(100vh - 86px)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+            }}>
               <Sidebar />
             </aside>
           )}

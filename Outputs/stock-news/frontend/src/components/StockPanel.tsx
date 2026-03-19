@@ -36,7 +36,7 @@ export default function StockPanel() {
   })
 
   return (
-    <div style={{ border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-card)', fontFamily: 'var(--font-mono)' }}>
+    <div style={{ border: '1px solid var(--border)', borderRadius: 8, background: 'var(--bg-card)', fontFamily: 'var(--font-mono)', display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1, overflow: 'hidden' }}>
 
       {/* 헤더 */}
       <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -78,7 +78,7 @@ export default function StockPanel() {
             <div style={{ fontSize: 10, color: 'var(--negative)', marginBottom: 3 }}>연결 오류</div>
           </div>
         ) : stocks && stocks.length > 0 ? (
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, overflowY: 'auto', flex: 1 }}>
             {stocks.map((stock: BeneficiaryStock, idx) => {
               const grade = getGrade(stock)
               const barWidth = Math.min(stock.mention_count * 18, 100)
