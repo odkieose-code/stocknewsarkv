@@ -1,3 +1,9 @@
 .vercel
 .env*.local
 Outputs/stock-news/backend/.venv
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.env
