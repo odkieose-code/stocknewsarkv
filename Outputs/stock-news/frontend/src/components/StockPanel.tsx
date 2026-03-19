@@ -39,14 +39,11 @@ export default function StockPanel({ borderless, noHover }: { borderless?: boole
     <div style={{ border: borderless ? 'none' : '1px solid var(--border)', borderRadius: borderless ? 0 : 8, background: 'transparent', fontFamily: 'var(--font-mono)', display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1, overflow: 'hidden' }}>
 
       {/* 헤더 */}
-      <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>// BENEFICIARY STOCKS</span>
-          <span style={{ fontSize: 9, color: 'var(--text-ghost)' }}>뉴스 언급 기반</span>
+      <div style={{ padding: '11px 14px', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ fontSize: 10, color: 'var(--text-tertiary)', letterSpacing: '0.1em', marginBottom: 2 }}>// BENEFICIARY STOCKS</div>
+        <div style={{ fontSize: 9, color: 'var(--text-ghost)' }}>
+          뉴스 언급 기반{stocks && stocks.length > 0 ? ` · ${stocks.length}종목` : ''}
         </div>
-        {stocks && stocks.length > 0 && (
-          <span style={{ fontSize: 9, color: 'var(--text-ghost)' }}>{stocks.length}종목</span>
-        )}
       </div>
 
       {/* 등급 범례 */}
@@ -105,20 +102,17 @@ export default function StockPanel({ borderless, noHover }: { borderless?: boole
                     </span>
                   </div>
 
-                  {/* 언급 횟수 바 */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: stock.reasons[0] ? 4 : 0 }}>
-                    <span style={{ fontSize: 9, color: 'var(--text-ghost)', whiteSpace: 'nowrap' }}>뉴스 {stock.mention_count}건</span>
-                    <div style={{ flex: 1, height: 2, background: 'var(--bg-input)', borderRadius: 1, overflow: 'hidden' }}>
+                  {/* 언급 횟수 바 + 이유 — 같은 시작라인 */}
+                  <div style={{ marginLeft: 21 }}>
+                    <div style={{ height: 2, background: 'var(--bg-input)', borderRadius: 1, overflow: 'hidden', marginBottom: stock.reasons[0] ? 4 : 0 }}>
                       <div style={{ height: '100%', width: `${barWidth}%`, background: grade.color, borderRadius: 1, transition: 'width 0.6s ease' }} />
                     </div>
+                    {stock.reasons[0] && (
+                      <p style={{ fontSize: 10, color: 'var(--text-secondary)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {stock.reasons[0]}
+                      </p>
+                    )}
                   </div>
-
-                  {/* 이유 */}
-                  {stock.reasons[0] && (
-                    <p style={{ fontSize: 10, color: 'var(--text-secondary)', margin: '0 0 0 21px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {stock.reasons[0]}
-                    </p>
-                  )}
                 </li>
               )
             })}
