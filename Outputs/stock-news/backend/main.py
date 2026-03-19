@@ -264,7 +264,7 @@ async def get_ticker():
                 data = r.json()
                 meta = data["chart"]["result"][0]["meta"]
                 price = meta.get("regularMarketPrice") or meta.get("previousClose")
-                prev  = meta.get("chartPreviousClose") or meta.get("previousClose")
+                prev  = meta.get("regularMarketPreviousClose") or meta.get("previousClose")
                 chg   = ((price - prev) / prev * 100) if price and prev else None
                 if label == "USD/KRW":
                     value = f"{price:.1f}" if price else "--"
