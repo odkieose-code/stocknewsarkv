@@ -221,12 +221,9 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
   })()
 
   const handleClick = () => {
-    if (isMobile) {
-      window.open(toMobileUrl(news.url), '_blank', 'noopener,noreferrer')
-    } else {
-      onClick() // SELECTED 패널 업데이트
-      window.open(news.url, '_blank', 'noopener,noreferrer')
-    }
+    const openUrl = isMobile ? toMobileUrl(news.url) : toMobileUrl(news.url)
+    onClick()
+    window.open(openUrl, '_blank', 'noopener,noreferrer')
   }
 
   return (
