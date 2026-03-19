@@ -221,8 +221,12 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
   })()
 
   const handleClick = () => {
-    if (isMobile) window.open(toMobileUrl(news.url), '_blank', 'noopener,noreferrer')
-    else onClick()
+    if (isMobile) {
+      window.open(toMobileUrl(news.url), '_blank', 'noopener,noreferrer')
+    } else {
+      onClick() // SELECTED 패널 업데이트
+      window.open(news.url, '_blank', 'noopener,noreferrer')
+    }
   }
 
   return (
@@ -333,13 +337,13 @@ export default function Dashboard() {
             </div>
             <p style={{ fontSize: 12, color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: 8, fontWeight: 500 }}>{selectedNews.title}</p>
             {selectedNews.summary && <p style={{ fontSize: 11, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 10 }}>{selectedNews.summary}</p>}
-            <a href={selectedNews.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none' }}>OPEN SOURCE →</a>
+            <a href={isMobile ? toMobileUrl(selectedNews.url) : selectedNews.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.08em', textDecoration: 'none' }}>OPEN SOURCE →</a>
           </div>
         </div>
       )}
 
       <MarketPulse newsData={newsData} />
-      {!selectedNews && <StockPanel />}
+      <StockPanel />
     </div>
   )
 
