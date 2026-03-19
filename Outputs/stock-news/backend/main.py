@@ -264,7 +264,7 @@ async def get_ticker():
                 data = r.json()
                 result = data["chart"]["result"][0]
                 closes = result["indicators"]["quote"][0]["close"]
-                closes = [c for c in closes if c is not None]
+                closes = [c for c in closes if c is not None and c > 0]
                 price = closes[-1] if len(closes) >= 1 else None
                 prev  = closes[-2] if len(closes) >= 2 else None
                 chg   = ((price - prev) / prev * 100) if price and prev else None
