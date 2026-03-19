@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from sqlalchemy import select, update, or_
+from sqlalchemy import select, update, delete, or_
 from datetime import datetime, timedelta
 from typing import Optional
 import traceback
@@ -43,6 +43,11 @@ async def run_crawl():
 
             for item in items:
                 try:
+                    # ── 빈 title 저장 방지 ─────────────────────────────
+                    if not item.title or len(item.title.strip()) < 8:
+                        print(f">>> 빈 제목 스킵: {item.url[:60]}", flush=True)
+                        continue
+
                     # TF-IDF 중복 검사
                     new_text = preprocess_text(item.title, item.content or "")
                     dup = deduplicator.check_duplicate(new_text, existing_texts, existing_ids)
@@ -207,6 +212,26 @@ async def trigger_batch_dedup(hours: int = Query(24)):
     import asyncio
     asyncio.create_task(run_batch_dedup(hours))
     return {"status": f"배치 중복 정리 시작 (최근 {hours}시간)"}
+
+
+@app.get("/admin/clear-empty-titles")
+async def clear_empty_titles():
+    """제목이 비어있거나 8자 미만인 뉴스를 DB에서 삭제"""
+    async with AsyncSessionLocal() as db:
+        result = await db.execute(
+            select(News.id, News.title).where(
+                or_(News.title == None, News.title == "", News.title.like(" %"))
+            )
+        )
+        # 8자 미만 title도 파이썬에서 필터링
+        all_news = await db.execute(select(News.id, News.title))
+        to_delete = [r.id for r in all_news.all() if not r.title or len(r.title.strip()) < 8]
+
+        if to_delete:
+            await db.execute(delete(News).where(News.id.in_(to_delete)))
+            await db.commit()
+            return {"status": f"빈 제목 뉴스 {len(to_delete)}건 삭제 완료"}
+        return {"status": "삭제할 뉴스 없음"}
 
 
 TICKER_SYMBOLS_MAP = {
