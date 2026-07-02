@@ -76,7 +76,7 @@ async def run_crawl():
                             summary = analysis.summary
                             sentiment = analysis.sentiment
                             importance_score = analysis.importance_score
-                            sector = analysis.sector or sector
+                            sector = analysis.category or sector
                             beneficiary_stocks = analysis.beneficiary_stocks or []
                             affected_stocks = analysis.affected_stocks or []
                     except Exception as e:
