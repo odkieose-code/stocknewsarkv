@@ -264,11 +264,18 @@ function NewsCardItem({ news, onClick, selected, isMobile }: {
           margin: 0,
           fontWeight: 500,
           flex: 1,
+          width: '100%',
+          maxWidth: '100%',
           wordBreak: 'keep-all',  // 한국어 자연스러운 줄바꿈
           overflowWrap: 'break-word',
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical' as const,
+          overflow: 'hidden',
         }}>
           {news.title}
         </p>
+        
       </div>
 
       {/* 요약 - 모바일도 1줄 */}
