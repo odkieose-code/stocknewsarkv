@@ -239,7 +239,6 @@ async def trigger_batch_dedup(hours: int = Query(24)):
     import asyncio
     asyncio.create_task(run_batch_dedup(hours))
     return {"status": f"배치 중복 정리 시작 (최근 {hours}시간)"}
-        return {"status": "삭제할 뉴스 없음"}
 
 
 TICKER_SYMBOLS_MAP = {
